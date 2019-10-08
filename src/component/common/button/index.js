@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 
-const Button = ({buttonExtraCSS, buttonType, buttonText, dataTest, onClick}) => {
+const Button = ({buttonCSS, buttonType, buttonText, dataTest, onClick}) => {
     return (
-        <button data-test={`${dataTest}-button`} className={`btn btn-${buttonType} ${buttonExtraCSS}`} onClick={onClick}>{buttonText}</button>
+        <button data-test={`${dataTest}-button`} className={`btn btn-${buttonType} ${buttonCSS}`} onClick={onClick}>{buttonText}</button>
     )
 }
 
 Button.defaultProps = {
-    buttonExtraCSS: '',
+    buttonCSS: 'app-button',
     buttonType: 'light',
     buttonText: 'Button',
     dataTest: 'app',
@@ -17,6 +17,7 @@ Button.defaultProps = {
 }
 
 Button.propTypes = {
+    buttonCSS: PropTypes.string,
     buttonType: PropTypes.string,
     buttonText: PropTypes.string,
     onClick: PropTypes.func

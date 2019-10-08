@@ -8,6 +8,7 @@ describe('Button Component', () => {
     describe('Checking propTypes', () => {
         it('Should not throw error', () => {
             const expectedProps = {
+                buttonCSS: 'app-button',
                 buttonType: 'light',
                 buttonText: 'Button',
                 dataTest: 'app',
@@ -22,6 +23,7 @@ describe('Button Component', () => {
         let wrapper;
         beforeEach(() => {
             const props = {
+                buttonCSS: 'app-button',
                 buttonType: 'light',
                 buttonText: 'Button',
                 dataTest: 'app',
