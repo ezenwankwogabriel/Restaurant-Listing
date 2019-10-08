@@ -8,7 +8,6 @@ describe('Button Component', () => {
     describe('Checking propTypes', () => {
         it('Should not throw error', () => {
             const expectedProps = {
-                buttonCSS: 'app-button',
                 buttonType: 'light',
                 buttonText: 'Button',
                 dataTest: 'app',
@@ -23,7 +22,6 @@ describe('Button Component', () => {
         let wrapper;
         beforeEach(() => {
             const props = {
-                buttonCSS: 'app-button',
                 buttonType: 'light',
                 buttonText: 'Button',
                 dataTest: 'app',
@@ -37,4 +35,29 @@ describe('Button Component', () => {
             expect(buttonComponent.length).toBe(1);
         });
     });
+
+    describe('Button calls function', () => {
+        let wrapper;
+        let mockFunction;
+
+        beforeEach(() => {
+            mockFunction = jest.fn();
+
+            const props = {
+                buttonType: 'light',
+                buttonText: 'Button',
+                dataTest: 'app',
+                onClick: mockFunction()
+            };
+            wrapper = shallow(<Button {...props} />);
+        });
+
+        it('Should call mock function without an error', () => {
+            const buttonComponent = findByTestAttr(wrapper, 'app-button');
+            buttonComponent.simulate('click');
+            const callback = mockFunction.mock.calls.length;
+            expect(callback).toBe(1);
+        });
+    });
+
 });
