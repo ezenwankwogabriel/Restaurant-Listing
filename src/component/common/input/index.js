@@ -27,6 +27,6 @@ Input.propTypes = {
     value: PropTypes.string,
     placeholder: PropTypes.string,
     dataTest: PropTypes.string,
-    onChange: () => console.log('input changed')
+    onChange: PropTypes.func
 }
 export default Input;
