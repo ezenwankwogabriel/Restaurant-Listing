@@ -8,7 +8,8 @@ describe('Checkbox Component', () => {
     describe('Checking propTypes', () => {
         it('Should not throw error', () => {
             const expectedProps = {
-                checkboxExtraClass: 'app',
+                checkboxExtraClass: 'app-checkbox',
+                checkboxID: 'app',
                 checkboxLabel: 'App checkbox',
                 dataTest: 'app',
                 checkedValue: false,
@@ -23,7 +24,8 @@ describe('Checkbox Component', () => {
         let wrapper;
         beforeEach(() => {
             const props = {
-                checkboxExtraClass: 'app',
+                checkboxExtraClass: 'app-checkbox',
+                checkboxID: 'app',
                 checkboxLabel: 'App checkbox',
                 dataTest: 'app',
                 checkedValue: false,
@@ -50,7 +52,8 @@ describe('Checkbox Component', () => {
         beforeEach(() => {
             mockFunction = jest.fn();
             const props = {
-                checkboxExtraClass: 'app',
+                checkboxExtraClass: 'app-checkbox',
+                checkboxID: 'app',
                 checkboxLabel: 'App checkbox',
                 dataTest: 'app',
                 checkedValue: false,
