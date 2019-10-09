@@ -9,6 +9,7 @@ describe('Input Component', () => {
         it('Should not throw error', () => {
             const expectedProps = {
                 inputExtraClass: 'app-input',
+                inputID: 'app',
                 inputLabel: 'Input',
                 inputType: 'text',
                 value: 'app input text',
@@ -26,6 +27,7 @@ describe('Input Component', () => {
         beforeEach(() => {
             const props = {
                 inputExtraClass: 'app-input',
+                inputID: 'app',
                 inputLabel: 'Input',
                 inputType: 'text',
                 value: 'app input text',
@@ -54,6 +56,7 @@ describe('Input Component', () => {
         beforeEach(() => {
             const props = {
                 inputExtraClass: 'app-input',
+                inputID: 'app',
                 inputLabel: 'Input',
                 inputType: 'text',
                 value: 'app input text',
@@ -77,6 +80,7 @@ describe('Input Component', () => {
         beforeEach(() => {
             const props = {
                 inputExtraClass: 'app-input',
+                inputID: 'app',
                 inputLabel: '',
                 inputType: 'text',
                 value: 'app input text',

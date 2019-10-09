@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-const Input = ({inputExtraClass, inputLabel, inputType, onChange, value, placeholder, dataTest}) => {
+const Input = ({inputExtraClass,inputID, inputLabel, inputType, onChange, value, placeholder, dataTest}) => {
     return(
         <div className="form-group">
             { inputLabel && <label data-test={`${dataTest}-label`}>{inputLabel}</label>}
-            <input data-test={`${dataTest}-input`} type={inputType} onChange={onChange} value={value} placeholder={placeholder} className={`form-control ${inputExtraClass}`}/>
+            <input data-test={`${dataTest}-input`} type={inputType} onChange={onChange} value={value} placeholder={placeholder} className={`form-control ${inputExtraClass}`} id={`${inputID}-input`}/>
         </div>
     );
 };
 
 Input.defaultProps = {
     inputExtraClass: 'app-input',
+    inputID: 'app',
     inputLabel: 'Input Label',
     inputType: 'text',
     value: '',
@@ -22,6 +23,7 @@ Input.defaultProps = {
 
 Input.propTypes = {
     inputExtraClass: PropTypes.string,
+    inputID: PropTypes.string,
     inputLabel: PropTypes.string,
     inputType: PropTypes.string,
     value: PropTypes.string,
