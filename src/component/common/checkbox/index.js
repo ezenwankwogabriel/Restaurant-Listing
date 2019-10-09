@@ -1,17 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Checkbox = ({checkboxExtraClass, checkboxLabel, dataTest, checkedValue, onChange}) => {
+const Checkbox = ({checkboxExtraClass, checkboxID, checkboxLabel, dataTest, checkedValue, onChange}) => {
     return (
         <div className="form-group form-check">
-            <input type="checkbox" data-test={`${dataTest}-checkbox`} onChange={onChange} className={`form-check-input ${checkboxExtraClass}`} checked={checkedValue}/>
+            <input type="checkbox" data-test={`${dataTest}-checkbox`} onChange={onChange} className={`form-check-input ${checkboxExtraClass}`} id={`${checkboxID}-checkbox`} checked={checkedValue}/>
             <label data-test="checkbox-label" className="form-check-label">{checkboxLabel}</label>
         </div>
     )
 };
 
 Checkbox.defaultProps = {
-    checkboxExtraClass: 'app',
+    checkboxExtraClass: 'app-checkbox',
+    checkboxID: 'app',
     checkboxLabel: 'App checkbox',
     dataTest: 'app',
     checkedValue: false,
