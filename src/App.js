@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from './component/common/button';
 import Input from './component/common/input';
+import Checkbox from './component/common/checkbox';
 
 function App() {
     return(
@@ -8,6 +9,7 @@ function App() {
             Hello world
             <Button/>
             <Input/>
+            <Checkbox />
         </div>
 	);
 }
