@@ -29,7 +29,7 @@ Dropdown.propTypes = {
     dropdownName: PropTypes.string,
     dropdownOptions: PropTypes.array.isRequired,
     selectedValue: PropTypes.string,
-    onChange: PropTypes.func
+    onChange: PropTypes.func.isRequired
 };
 
 export default Dropdown;
