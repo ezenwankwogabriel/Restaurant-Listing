@@ -7,7 +7,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-size: 12px;
 }
-
+.App.container {
+  height: inherit;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
