@@ -2,22 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 
-const Button = ({buttonCSS, buttonType, buttonText, dataTest, onClick}) => {
+const Button = ({buttonExtraCSS, buttonType, buttonText, onClick}) => {
     return (
-        <button data-test={`${dataTest}-button`} className={`btn btn-${buttonType} ${buttonCSS}`} onClick={onClick}>{buttonText}</button>
+        <button data-test="app-button" className={`btn btn-${buttonType} ${buttonExtraCSS}`} onClick={onClick}>{buttonText}</button>
     )
 }
 
 Button.defaultProps = {
-    buttonCSS: 'app-button',
+    buttonExtraCSS: 'app-button',
     buttonType: 'light',
     buttonText: 'Button',
-    dataTest: 'app',
-    onClick: () => { console.log('button clicked') }
+    onClick: () => { }
 }
 
 Button.propTypes = {
-    buttonCSS: PropTypes.string,
+    buttonExtraCSS: PropTypes.string,
     buttonType: PropTypes.string,
     buttonText: PropTypes.string,
     onClick: PropTypes.func

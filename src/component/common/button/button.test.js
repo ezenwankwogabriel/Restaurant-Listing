@@ -10,7 +10,6 @@ describe('Button Component', () => {
             const expectedProps = {
                 buttonType: 'light',
                 buttonText: 'Button',
-                dataTest: 'app',
                 onClick: () => { console.log('button clicked'); }
             };
             const buttonError = checkProps(Button, expectedProps);
@@ -19,16 +18,12 @@ describe('Button Component', () => {
     });
 
     describe('Button render', () => {
-        let wrapper;
-        beforeEach(() => {
-            const props = {
-                buttonType: 'light',
-                buttonText: 'Button',
-                dataTest: 'app',
-                onClick: () => { console.log('button clicked'); }
-            };
-            wrapper = shallow(<Button {...props} />);
-        });
+        const props = {
+            buttonType: 'light',
+            buttonText: 'Button',
+            onClick: () => { console.log('button clicked'); }
+        };
+        let wrapper = shallow(<Button {...props} />);
 
         it('Should render without an error', () => {
             const buttonComponent = findByTestAttr(wrapper, 'app-button');
@@ -37,20 +32,15 @@ describe('Button Component', () => {
     });
 
     describe('Button calls function', () => {
-        let wrapper;
-        let mockFunction;
+        let mockFunction = jest.fn();
 
-        beforeEach(() => {
-            mockFunction = jest.fn();
-
-            const props = {
-                buttonType: 'light',
-                buttonText: 'Button',
-                dataTest: 'app',
-                onClick: mockFunction()
-            };
-            wrapper = shallow(<Button {...props} />);
-        });
+        const props = {
+            buttonType: 'light',
+            buttonText: 'Button',
+            dataTest: 'app',
+            onClick: mockFunction()
+        };
+        let wrapper = shallow(<Button {...props} />);
 
         it('Should call mock function without an error', () => {
             const buttonComponent = findByTestAttr(wrapper, 'app-button');

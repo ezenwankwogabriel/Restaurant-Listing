@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Checkbox = ({checkboxExtraClass, checkboxID, checkboxLabel, dataTest, checkedValue, onChange}) => {
+const Checkbox = ({checkboxExtraClass, checkboxName, checkboxLabel, checkedValue, onChange}) => {
     return (
         <div className="form-group form-check">
-            <input type="checkbox" data-test={`${dataTest}-checkbox`} onChange={onChange} className={`form-check-input ${checkboxExtraClass}`} id={`${checkboxID}-checkbox`} checked={checkedValue}/>
+            <input type="checkbox" data-test="app-checkbox" onChange={onChange} name={checkboxName} className={`form-check-input ${checkboxExtraClass}`} checked={checkedValue}/>
             <label data-test="checkbox-label" className="form-check-label">{checkboxLabel}</label>
         </div>
     )
@@ -12,19 +12,18 @@ const Checkbox = ({checkboxExtraClass, checkboxID, checkboxLabel, dataTest, chec
 
 Checkbox.defaultProps = {
     checkboxExtraClass: 'app-checkbox',
-    checkboxID: 'app',
+    checkboxName: 'app_checkbox',
     checkboxLabel: 'App checkbox',
-    dataTest: 'app',
     checkedValue: false,
-    onChange: (e) => console.log('checked: ', e.target.value)
+    onChange: () => { }
 };
 
 Checkbox.propTypes = {
     checkboxExtraClass: PropTypes.string,
-    checkboxLabel: PropTypes.string,
-    dataTest: PropTypes.string,
-    checkedValue: PropTypes.bool,
-    onChange: PropTypes.func
+    checkboxName: PropTypes.string,
+    checkboxLabel: PropTypes.string.isRequired,
+    checkedValue: PropTypes.bool.isRequired,
+    onChange: PropTypes.func.isRequired
 };
 
 export default Checkbox;

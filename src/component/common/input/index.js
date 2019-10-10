@@ -1,34 +1,28 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-const Input = ({inputExtraClass,inputID, inputLabel, inputType, onChange, value, placeholder, dataTest}) => {
+const Input = ({inputExtraClass,inputName, inputType, onChange, value, placeholder}) => {
     return(
         <div className="form-group">
-            { inputLabel && <label data-test={`${dataTest}-label`}>{inputLabel}</label>}
-            <input data-test={`${dataTest}-input`} type={inputType} onChange={onChange} value={value} placeholder={placeholder} className={`form-control ${inputExtraClass}`} id={`${inputID}-input`}/>
+            <input data-test="app-input" type={inputType} onChange={onChange} value={value} placeholder={placeholder} className={`form-control ${inputExtraClass}`} name={inputName}/>
         </div>
     );
 };
 
 Input.defaultProps = {
     inputExtraClass: 'app-input',
-    inputID: 'app',
-    inputLabel: 'Input Label',
+    inputName: 'app_input',
     inputType: 'text',
     value: '',
-    placeholder: 'Enter input text',
-    dataTest: 'app',
-    onChange: (e) => console.log('input changed: ', e.target.value)
+    onChange: (e) => { }
 }
 
 Input.propTypes = {
     inputExtraClass: PropTypes.string,
-    inputID: PropTypes.string,
-    inputLabel: PropTypes.string,
-    inputType: PropTypes.string,
-    value: PropTypes.string,
+    inputName: PropTypes.string,
+    inputType: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired,
     placeholder: PropTypes.string,
-    dataTest: PropTypes.string,
-    onChange: PropTypes.func
+    onChange: PropTypes.func.isRequired
 }
 export default Input;

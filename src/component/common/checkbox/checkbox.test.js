@@ -9,9 +9,8 @@ describe('Checkbox Component', () => {
         it('Should not throw error', () => {
             const expectedProps = {
                 checkboxExtraClass: 'app-checkbox',
-                checkboxID: 'app',
+                checkboxName: 'app_checkbox',
                 checkboxLabel: 'App checkbox',
-                dataTest: 'app',
                 checkedValue: false,
                 onChange: () => console.log('checked')
             };
@@ -25,9 +24,8 @@ describe('Checkbox Component', () => {
         beforeEach(() => {
             const props = {
                 checkboxExtraClass: 'app-checkbox',
-                checkboxID: 'app',
+                checkboxName: 'app_checkbox',
                 checkboxLabel: 'App checkbox',
-                dataTest: 'app',
                 checkedValue: false,
                 onChange: () => console.log('checked')
             };
@@ -46,21 +44,15 @@ describe('Checkbox Component', () => {
     });
 
     describe('Checkbox onChange', () => {
-        let wrapper;
-        let mockFunction;
-
-        beforeEach(() => {
-            mockFunction = jest.fn();
-            const props = {
-                checkboxExtraClass: 'app-checkbox',
-                checkboxID: 'app',
-                checkboxLabel: 'App checkbox',
-                dataTest: 'app',
-                checkedValue: false,
-                onChange: mockFunction()
-            };
-            wrapper = shallow(<Checkbox {...props} />);
-        });
+        let mockFunction  = jest.fn();
+        const props = {
+            checkboxExtraClass: 'app-checkbox',
+            checkboxName: 'app_checkbox',
+            checkboxLabel: 'App checkbox',
+            checkedValue: false,
+            onChange: mockFunction()
+        };
+        let wrapper = shallow(<Checkbox {...props} />);
 
         it('Should return input value without an error', () => {
             const checkboxComponent = findByTestAttr(wrapper, 'app-checkbox');

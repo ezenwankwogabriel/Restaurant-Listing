@@ -6,10 +6,8 @@ import Dropdown from './index';
 const setUp = (props = {}) => {
     const defaultProps = {
         dropdownExtraClass: '',
-        dropdownID: 'app',
-        dataTest: 'app',
+        dropdownName: 'app_dropdown',
         selectedValue: '',
-        dropdownLabel: 'App dropdown',
         dropdownOptions: [{option: 'one', value: 'One'}, {option: 'two', value: 'Two'}],
         onChange: (e) => { console.log('dropdown changed: ', e.target.value); },
         ...props
@@ -24,10 +22,8 @@ describe('Dropdown Component', () => {
         it('Should not throw error', () => {
             const expectedProps = {
                 dropdownExtraClass: '',
-                dropdownID: 'app',
-                dropdownLabel: 'App dropdown',
+                dropdownName: 'app_dropdown',
                 dropdownOptions: [{option: 'one', value: 'One'}, {option: 'two', value: 'Two'}],
-                dataTest: 'app',
                 selectedValue: '',
                 onChange: (e) => { console.log('dropdown changed: ', e.target.value)}
             };
@@ -37,70 +33,20 @@ describe('Dropdown Component', () => {
     });
 
     describe('Dropdown render', () => {
-        let wrapper;
-        beforeEach(() => {
-            const props = { };
-
-            wrapper = setUp(props);
-        });
+        let wrapper = setUp();
 
         it('Should render dropdown without an error', () => {
             const dropdownComponent = findByTestAttr(wrapper, 'app-dropdown');
             expect(dropdownComponent.length).toBe(1);
-        });
-
-        it('Should render dropdown label without an error', () => {
-            const labelComponent = findByTestAttr(wrapper, 'app-dropdown-label');
-            expect(labelComponent.length).toBe(1);
-        });
-    });
-
-    describe('Dropdown render without label', () => {
-        let wrapper;
-        beforeEach(() => {
-            const props = {
-                dropdownLabel: ''
-            };
-            wrapper = setUp(props);
-        });
-
-        it('Should render dropdown without an error', () => {
-            const dropdownComponent = findByTestAttr(wrapper, 'app-dropdown');
-            expect(dropdownComponent.length).toBe(1);
-        });
-
-        it('Should not render label without an error', () => {
-            const labelComponent = findByTestAttr(wrapper, 'app-dropdown-label');
-            expect(labelComponent.length).toBe(0);
-        });
-    });
-
-    describe('Dropdown does not render without options', () => {
-        let wrapper;
-        beforeEach(() => {
-            const props = {
-                dropdownOptions: null
-            };
-            wrapper = setUp(props);
-        });
-
-        it('Should not render dropdown without an option', () => {
-            const dropdownComponent = findByTestAttr(wrapper, 'app-dropdown');
-            expect(dropdownComponent.length).toBe(0);
         });
     });
 
     describe('Dropdown onChange', () => {
-        let wrapper;
-        let mockFunction;
-
-        beforeEach(() => {
-            mockFunction = jest.fn();
-            const props = {
-                onChange: mockFunction()
-            };
-            wrapper = setUp(props);
-        });
+        let mockFunction = jest.fn();
+        const props = {
+            onChange: mockFunction()
+        };
+        let wrapper = setUp(props);
 
         it('Should call mock function without an error', () => {
             const dropdownComponent = findByTestAttr(wrapper, 'app-dropdown');
