@@ -13,19 +13,21 @@ import RestaurantListings from './component/RestaurantListing';
 
 function App() {
     return(
-        <div className="row container">
-            <div className="col">
-                <Router>
-                    <Switch>
-                        <Route path="/">
-                            <div className="row">
-                                <div className="col">
-                                    <RestaurantListings />
+        <div className="container">
+            <div className="row">
+                <div className="col">
+                    <Router>
+                        <Switch>
+                            <Route path="/">
+                                <div className="row">
+                                    <div className="col">
+                                        <RestaurantListings />
+                                    </div>
                                 </div>
-                            </div>
-                        </Route>
-                    </Switch>
-                </Router>
+                            </Route>
+                        </Switch>
+                    </Router>
+                </div>
             </div>
         </div>
 	);
