@@ -5,7 +5,7 @@ import "./style.scss";
 
 const AppText = ({appTextExtraCSS, size, text}) => {
     return (
-        <p data-test="app-text" className={`${appTextExtraCSS} ${size}`}>{text}</p>
+        <p data-testid="app-text" className={`${appTextExtraCSS} ${size}`}>{text}</p>
     )
 }
 

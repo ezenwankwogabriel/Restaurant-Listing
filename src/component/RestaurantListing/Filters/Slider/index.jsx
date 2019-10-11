@@ -1,5 +1,5 @@
 import React from 'react';
-import CheckBox from '../../../common/checkbox';
+import CheckBox from '../../../common/Checkbox';
 
 import './styles.scss';
 

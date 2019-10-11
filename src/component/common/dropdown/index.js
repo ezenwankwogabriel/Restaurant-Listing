@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 const Dropdown = ({ dropdownExtraClass, dropdownName, dropdownOptions, selectedValue, onChange }) => {
     return (
         <div className="form-group">
-            <select className={`form-control ${dropdownExtraClass}`} name={dropdownName} value= {selectedValue} onChange={onChange} data-test="app-dropdown">
+            <select className={`form-control ${dropdownExtraClass}`} name={dropdownName} value= {selectedValue} onChange={onChange} data-testid="app-dropdown">
                 { 
                     dropdownOptions.map((option, index) => 
                         <option key={index} value={option.value}>{option.option}</option>

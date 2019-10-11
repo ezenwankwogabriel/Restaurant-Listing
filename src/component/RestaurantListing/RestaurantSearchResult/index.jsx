@@ -1,11 +1,11 @@
 import React from 'react';
-import DropDown from '../../common/dropdown';
-import InputBox from '../../common/input';
-import Button from '../../common/button';
+import DropDown from '../../common/Dropdown';
+import InputBox from '../../common/Input';
+import Button from '../../common/Button';
 import Label from '../../common/Label';
 import './styles.scss';
 
-const Restaurants = () => {
+const RestaurantSearchResult = () => {
 
   const options = [{option: 'one', value: 'One'}, {option: 'two', value: 'Two'}];
   return ( 
@@ -25,4 +25,4 @@ const Restaurants = () => {
    );
 }
  
-export default Restaurants;
+export default RestaurantSearchResult;

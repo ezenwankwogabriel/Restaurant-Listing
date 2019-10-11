@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const Input = ({inputExtraClass,inputName, inputType, onChange, value, placeholder}) => {
     return(
         <div className="form-group">
-            <input data-test="app-input" type={inputType} onChange={onChange} value={value} placeholder={placeholder} className={`form-control ${inputExtraClass}`} name={inputName}/>
+            <input data-testid="app-input" type={inputType} onChange={onChange} value={value} placeholder={placeholder} className={`form-control ${inputExtraClass}`} name={inputName}/>
         </div>
     );
 };

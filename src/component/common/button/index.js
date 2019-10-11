@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const Button = ({buttonExtraCSS, buttonType, buttonText, onClick}) => {
     return (
-        <button data-test="app-button" className={`btn btn-${buttonType} ${buttonExtraCSS}`} onClick={onClick}>{buttonText}</button>
+        <button data-testid="app-button" className={`btn btn-${buttonType} ${buttonExtraCSS}`} onClick={onClick}>{buttonText}</button>
     )
 }
 

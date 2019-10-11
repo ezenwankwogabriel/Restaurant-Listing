@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Label = ({labelExtraClass, labelText}) => {
     return (
-        <label data-test="app-label" className={`form-check-label ${labelExtraClass}`}>{labelText}</label>
+        <label data-testid="app-label" className={`form-check-label ${labelExtraClass}`}>{labelText}</label>
     )
 };
 
