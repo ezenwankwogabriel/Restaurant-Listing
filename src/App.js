@@ -1,4 +1,9 @@
 import React from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
 // import Button from './component/common/button';
 // import Input from './component/common/input';
 // import Checkbox from './component/common/checkbox';
@@ -6,16 +11,19 @@ import React from 'react';
 // import Label from './component/common/Label';
 import RestaurantListings from './component/RestaurantListing';
 
-
 function App() {
     return(
-        <div className="App container">
-            <div className="row">
+      <Router>
+        <Switch>
+          <Route path="/">
+          <div className="row">
                 <div className="col">
                     <RestaurantListings />
                 </div>
             </div>
-        </div>
+          </Route>
+        </Switch>
+      </Router>
 	);
 }
 
