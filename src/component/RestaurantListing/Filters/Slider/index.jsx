@@ -6,7 +6,7 @@ import './styles.scss';
 const Slider = (props) => {
 
   const list = [1, 2] || props.categories;
-  const sliderList = list.map(category => <CheckBox category={category} />);
+  const sliderList = list.map((category, index) => <CheckBox key={index} category={category} />);
 
   return ( 
     <div className="slider">
