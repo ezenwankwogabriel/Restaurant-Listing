@@ -9,7 +9,7 @@ const RestaurantSearchResult = () => {
 
   const options = [{option: 'one', value: 'One'}, {option: 'two', value: 'Two'}];
   return ( 
-    <div className="restaurant">
+    <div className="restaurant app-bg">
       {/* header component, to would be refactored */}
       <div className="header"> 
         <Label labelExtraClass="" labelText="Filter By" />
