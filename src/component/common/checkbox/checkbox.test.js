@@ -11,7 +11,8 @@ describe('Checkbox Component', () => {
                 checkboxExtraClass: 'app-checkbox',
                 checkboxName: 'app_checkbox',
                 checkboxLabel: 'App checkbox',
-                checkedValue: false,
+                checkedValue: 'checkbox',
+                isChecked: false,
                 onChange: () => console.log('checked')
             };
             const checkboxError = checkProps(Checkbox, expectedProps);
@@ -26,7 +27,8 @@ describe('Checkbox Component', () => {
                 checkboxExtraClass: 'app-checkbox',
                 checkboxName: 'app_checkbox',
                 checkboxLabel: 'App checkbox',
-                checkedValue: false,
+                checkedValue: 'checkbox',
+                isChecked: false,
                 onChange: () => console.log('checked')
             };
             wrapper = shallow(<Checkbox {...props} />);
@@ -49,7 +51,8 @@ describe('Checkbox Component', () => {
             checkboxExtraClass: 'app-checkbox',
             checkboxName: 'app_checkbox',
             checkboxLabel: 'App checkbox',
-            checkedValue: false,
+            checkedValue: 'checkbox',
+            isChecked: false,
             onChange: mockFunction()
         };
         let wrapper = shallow(<Checkbox {...props} />);
