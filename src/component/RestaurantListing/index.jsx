@@ -16,8 +16,8 @@ const RestaurantListing = () => {
                     <Filters/>
                 </div>
                 <div className="col-9">
-                    {/* <RestaurantSearchBox /> */}
-                    <RestaurantSearchResult />
+                    <RestaurantSearchBox />
+                    {/* <RestaurantSearchResult /> */}
                 </div>
             </div>
         </div>

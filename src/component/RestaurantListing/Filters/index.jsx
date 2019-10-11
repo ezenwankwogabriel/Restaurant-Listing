@@ -6,11 +6,11 @@ import './styles.scss';
 
 const Filters = (props) => {
 
-  return (
-    <div className="filters">
-      <Slider />
-    </div>
-   );
+    return (
+        <div className="filters app-bg">
+            <Slider />
+        </div>
+    );
 }
  
 export default Filters;

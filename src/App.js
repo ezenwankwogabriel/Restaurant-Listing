@@ -14,7 +14,7 @@ import RestaurantListings from './component/RestaurantListing';
 function App() {
     return(
         <div className="container">
-            <div className="row">
+            <div className="row m-5">
                 <div className="col">
                     <Router>
                         <Switch>
