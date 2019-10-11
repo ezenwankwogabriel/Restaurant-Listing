@@ -1,14 +1,15 @@
 import React from 'react';
-import Slider from './Slider/index';
-import Category from '../Category/index';
+import Range from './Range/index';
 
 import './styles.scss';
+import AppTextHeader from '../../common/AppTextHeader';
 
 const Filters = (props) => {
 
     return (
         <div className="filters app-bg">
-            <Slider />
+            <AppTextHeader appTextHeaderExtraCSS="h6" text="FILTER"/>
+            <Range />
         </div>
     );
 }
