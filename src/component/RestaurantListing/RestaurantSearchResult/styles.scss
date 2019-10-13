@@ -1,7 +1,7 @@
-.restaurant {
+.restaurant-result {
   display: flex;
-  flex-direction: column;
-  flex: 3;
+  flex-direction: row;
+  flex-wrap: wrap;
   // border: thin solid black;
   // margin: 20px;
 }
