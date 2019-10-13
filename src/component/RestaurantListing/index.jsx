@@ -8,6 +8,13 @@ import RestaurantSearchBox from "./RestaurantSearchBox";
 
 
 const RestaurantListing = () => {
+
+    const sampleData = [{
+        imageUrl: 'https://res.cloudinary.com/nesterpod-com/image/upload/v1570649796/1_Drinks_gtdgfr.png',
+        cardTitle: 'Card Title', 
+        cardContent: 'Some quick example text to build on the card title and make up the bulk of the cards content.', 
+        id: 1
+      }];
     return (
         <div className="listings">
             <div className="row">
@@ -17,7 +24,7 @@ const RestaurantListing = () => {
                 </div>
                 <div className="col-9">
                     <RestaurantSearchBox />
-                    {/* <RestaurantSearchResult /> */}
+                    <RestaurantSearchResult results={sampleData} />
                 </div>
             </div>
         </div>
