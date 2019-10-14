@@ -1,28 +1,22 @@
 import React from 'react';
-import DropDown from '../../common/Dropdown';
-import InputBox from '../../common/Input';
-import Button from '../../common/Button';
-import Label from '../../common/Label';
+import PropTypes from 'prop-types';
 import './styles.scss';
+import Cards from './cards'
 
-const RestaurantSearchResult = () => {
+const RestaurantSearchResult = ({ results }) => {
 
-  const options = [{option: 'one', value: 'One'}, {option: 'two', value: 'Two'}];
-  return ( 
-    <div className="restaurant app-bg">
-      {/* header component, to would be refactored */}
-      <div className="header"> 
-        <Label labelExtraClass="" labelText="Filter By" />
-        <DropDown dropdownExtraClass="" dropdownOptions={options} />
-        <InputBox />
-        <Button buttonText="secondary" buttonExtraCSS="" />
-      </div>
-      {/* content component, to be refactored also */}
-      <div className="content">
-        
-      </div>
+  const onClick = () => { };
+
+  return (
+    <div className="restaurant-result app-bg" data-testid="app-results">
+      { results.map(({image, title, content, id}) => <Cards key={id} imageUrl={image} cardTitle={title} cardContent={content} onClick={onClick} />)}
     </div>
    );
 }
+
+RestaurantSearchResult.propTypes = {
+  results: PropTypes.array,
+}
+
  
 export default RestaurantSearchResult;
