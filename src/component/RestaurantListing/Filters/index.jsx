@@ -1,5 +1,4 @@
-import React from 'react';
-import Range from './Range/index';
+import React, { useState } from 'react';
 
 import './styles.scss';
 import AppTextHeader from '../../common/AppTextHeader';
@@ -7,6 +6,15 @@ import Label from '../../common/Label';
 import RadioButton from '../../common/RadioButton';
 
 const Filters = (props) => {
+    const [sortBy, setSortBy] = useState('');
+    const [orderBy, setOrderBy] = useState('');
+
+    function onChange(e) {
+        if(e.target.name === "sort_by"){
+            return setSortBy(e.target.value);
+        }
+        return setOrderBy(e.target.value);
+    }
 
     return (
         <div className="app-bg" data-testid="app-filter">
@@ -18,43 +26,28 @@ const Filters = (props) => {
                                 <AppTextHeader appTextHeaderExtraCSS='h6 text-center' text='Filter'/>
                             </div>
                         </div>
-                        <div className="row">
+                        <div className="row mb-4">
                             <div className="col">
-                                <div className="row">
-                                    <div className="col">
-                                        <Label labelText="N100"/>
-                                    </div>
-                                    <div className="col">
-                                        <Label labelExtraClass="float-right" labelText="N10,000"/>
-                                    </div>
+                                <Label labelText="Sort by" labelExtraClass="mb-2"/>
+                                <div className="py-1">
+                                    <RadioButton radioButtonName="sort_by" radioButtonValue="pricing" onChange={onChange} isChecked={sortBy==="pricing"} radioButtonLabel="Restaurant pricing"/>
                                 </div>
-                                <Range />
-                                <div className="row">
-                                    <div className="col">
-                                        <Label labelExtraClass="float-right" labelText="N2,000"/>
-                                    </div>
+                                <div className="py-1">
+                                    <RadioButton radioButtonName="sort_by" radioButtonValue="rating" onChange={onChange} isChecked={sortBy==="rating"} radioButtonLabel="Restaurant ratings"/>
                                 </div>
                             </div>
                         </div>
                         <div className="row">
                             <div className="col">
-                                <div className="row">
-                                    <div className="col">
-                                        <Label labelText="N100"/>
-                                    </div>
-                                    <div className="col">
-                                        <Label labelExtraClass="float-right" labelText="N10,000"/>
-                                    </div>
+                                <Label labelText="Order by" labelExtraClass="mb-2"/>
+                                <div className="py-1">
+                                    <RadioButton radioButtonName="order_by" radioButtonValue="desc" onChange={onChange} isChecked={orderBy==="desc"} radioButtonLabel="Highest to Lowest"/>
                                 </div>
-                                <Range />
-                                <div className="row">
-                                    <div className="col">
-                                        <Label labelExtraClass="float-right" labelText="N2,000"/>
-                                    </div>
+                                <div className="py-1">
+                                    <RadioButton radioButtonName="order_by" radioButtonValue="asc" onChange={onChange} isChecked={orderBy==="asc"} radioButtonLabel="Lowest to Highest"/>
                                 </div>
                             </div>
                         </div>
-                        <RadioButton />
                     </div>
                 </div>
             </div>
