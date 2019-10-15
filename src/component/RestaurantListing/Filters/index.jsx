@@ -4,6 +4,7 @@ import Range from './Range/index';
 import './styles.scss';
 import AppTextHeader from '../../common/AppTextHeader';
 import Label from '../../common/Label';
+import RadioButton from '../../common/RadioButton';
 
 const Filters = (props) => {
 
@@ -53,6 +54,7 @@ const Filters = (props) => {
                                 </div>
                             </div>
                         </div>
+                        <RadioButton />
                     </div>
                 </div>
             </div>
