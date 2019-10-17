@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import DropDown from '../../common/Dropdown';
 import InputBox from '../../common/Input';
@@ -6,10 +6,9 @@ import Button from '../../common/Button';
 import Label from '../../common/Label';
 import SearchBox from './searchBox';
 import './styles.scss';
+import HigherOC from '../../hoc';
 
-const RestaurantSearchBox = ({action, handleDropDownChange, dropDownOptions, handleSearchValues, searchState}) => {
-
-  const { sortType, value, message, locations: results } = searchState;
+export const RestaurantSearchBox = ({action, handleDropDownChange, dropDownOptions, handleSearchValues, sortType, value, message, locations: results}) => {
 
   const searchValues = () => (value && handleSearchValues())
 
@@ -29,21 +28,9 @@ const RestaurantSearchBox = ({action, handleDropDownChange, dropDownOptions, han
 }
 
 RestaurantSearchBox.propTypes = {
-  action: PropTypes.func.isRequired,
-  handleDropDownChange: PropTypes.func.isRequired,
-  dropDownOptions: PropTypes.array.isRequired,
-  searchState: PropTypes.shape({
-    locations: PropTypes.array.isRequired,
-    sortType: PropTypes.string,
-    value: PropTypes.string,
-    message: PropTypes.string,
-  }),
+  action: PropTypes.func,
+  handleDropDownChange: PropTypes.func,
+  dropDownOptions: PropTypes.array,
 }
 
-RestaurantSearchBox.defaultProps = {
-  searchState: {
-    sortType: "Location",
-  }
-}
- 
-export default RestaurantSearchBox;
+export default HigherOC(RestaurantSearchBox);

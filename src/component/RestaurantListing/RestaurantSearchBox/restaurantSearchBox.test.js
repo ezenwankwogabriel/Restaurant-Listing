@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 import { findByTestAttr, checkProps } from "../../../utils";
-import RestaurantSearchBox from "./index";
+import {RestaurantSearchBox} from "./index";
 
 const expectedProps = {
   action: () => {},

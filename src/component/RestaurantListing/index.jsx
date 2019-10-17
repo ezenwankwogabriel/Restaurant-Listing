@@ -1,20 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 
 import "./styles.scss";
 import Category from "./Category";
 import Filters from "./Filters";
 import RestaurantSearchResult from "./RestaurantSearchResult";
 import RestaurantSearchBox from "./RestaurantSearchBox";
+import HigerOC from "../hoc";
 
-const RestaurantListing = () => {
-  const [state, setState] = useState({
-    locations: [],
-    options: {},
-    sortType: "Location",
-    value: "",
-    message: "Enter Location to search"
-  });
-
+export const RestaurantListing = ({ sortType, setGlobalStore }) => {
   const listing = {
     imageUrl:
       "https://res.cloudinary.com/nesterpod-com/image/upload/v1570649796/1_Drinks_gtdgfr.png",
@@ -31,17 +24,32 @@ const RestaurantListing = () => {
     { ...listing, id: 5 },
     { ...listing, id: 6 }
   ];
-
   const dropDownOptions = [
     { option: "Location", value: "Location", id: 1 },
     { option: "Restaurant", value: "Restaurant", id: 2 }
   ];
 
+  const setRestaurants = () => {
+    setGlobalStore(prev => ({ ...prev, restaurantResult }));
+  };
+
+  useEffect(() => {
+    // fetch restaurants from api
+    setTimeout(setRestaurants(), 1000);
+    // eslint-disable-next-line
+  }, []);
+
   async function fetchLocation(event) {
     const value = event.target.value;
-    if (state.sortType !== "Location") return setState({ ...state, value });
-    if (!value) return setState({ ...state, message: 'Enter Location to search', value: ''})
-    setState({ ...state, value, message: "Loading ..." });
+    if (sortType !== "Location")
+      return setGlobalStore(prev => ({ ...prev, value }));
+    if (!value)
+      return setGlobalStore(prev => ({
+        ...prev,
+        message: "Enter Location to search",
+        value: ""
+      }));
+    setGlobalStore(prev => ({ ...prev, value, message: "Loading ..." }));
     const list = {
       entity_type: "city",
       entity_id: 10913,
@@ -56,7 +64,7 @@ const RestaurantListing = () => {
     const data = [{ ...list }, { ...list }, { ...list }];
     await setTimeout(
       () =>
-        setState(prev => ({
+        setGlobalStore(prev => ({
           ...prev,
           locations: data,
           message: "location not found"
@@ -67,7 +75,7 @@ const RestaurantListing = () => {
 
   function handleDropDownChange(context) {
     const value = context.target.value;
-    setState({ ...state, sortType: value, value: '' });
+    setGlobalStore(prev => ({ ...prev, sortType: value, value: "" }));
   }
 
   function findRestaurantByLocationId() {}
@@ -75,7 +83,7 @@ const RestaurantListing = () => {
   function findRestaurantByName() {}
 
   function handleSearchValues() {
-    switch (state.sortType) {
+    switch (sortType) {
       case "Location":
         findRestaurantByLocationId();
         break;
@@ -100,13 +108,12 @@ const RestaurantListing = () => {
             action={fetchLocation}
             handleDropDownChange={handleDropDownChange}
             dropDownOptions={dropDownOptions}
-            searchState={state}
           />
-          <RestaurantSearchResult results={restaurantResult} />
+          <RestaurantSearchResult />
         </div>
       </div>
     </div>
   );
 };
 
-export default RestaurantListing;
+export default HigerOC(RestaurantListing);

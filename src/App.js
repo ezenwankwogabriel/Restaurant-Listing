@@ -10,8 +10,9 @@ import {
 // import Dropdown from './component/common/dropdown';
 // import Label from './component/common/Label';
 import RestaurantListings from './component/RestaurantListing';
+import HigherOC from './component/hoc';
 
-function App() {
+export function App() {
     return(
         <div className="container">
             <div className="row m-5">
@@ -20,7 +21,7 @@ function App() {
                         <Switch>
                             <Route path="/">
                                 <div className="row">
-                                    <div className="col">
+                                    <div className="col hello">
                                         <RestaurantListings />
                                     </div>
                                 </div>
@@ -33,4 +34,4 @@ function App() {
 	);
 }
 
-export default App;
+export default HigherOC(App);
