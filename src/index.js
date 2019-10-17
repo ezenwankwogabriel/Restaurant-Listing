@@ -2,13 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import Store from './component/Store';
+import ContextProvider from './component/Store';
 
 function Index() {
   return (
-    <Store>
+    <ContextProvider>
       <App />
-    </Store>
+    </ContextProvider>
   )
 }
 
