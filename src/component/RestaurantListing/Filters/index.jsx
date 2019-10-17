@@ -15,6 +15,53 @@ const Filters = ({ sortBy, orderBy, setSortBy, setOrderBy }) => {
         return setOrderBy(e.target.value);
     }
 
+    function createFilters(filters){
+        return filters.map((filter, index) => {
+            return (
+                <div className="row mb-4" key={index}>
+                    <div className="col">
+                        <Label labelText={filter.title} labelExtraClass="mb-2"/>
+                        {
+                            filter.buttons.map((button, index) => {
+                                return(
+                                    <div className="py-1" key={index}>
+                                        <RadioButton data-testid={button.testid} radioButtonName={filter.name} radioButtonValue={button.value} onChange={onChange} isChecked={sortBy===button.value} radioButtonLabel={button.label}/>
+                                    </div>
+                                );
+                            })
+                        }
+                    </div>
+                </div>
+            );
+        });
+    }
+
+    const filters = [{ 
+        title: 'Sort by', 
+        name: 'sort_by', 
+        buttons: [{ 
+            testid: 'sort-by-pricing', 
+            value: 'pricing', 
+            label: 'Restaurant pricing' 
+        }, { 
+            testid: 'sort-by-rating', 
+            value: 'rating', 
+            label: 'Restaurant ratings' 
+        }] 
+    }, { 
+        title: 'Order by', 
+        name: 'order_by', 
+        buttons: [{ 
+            testid: 'order-by-asc', 
+            value: 'asc', 
+            label: 'Lowest to Highest' 
+        }, { 
+            testid: 'order-by-desc', 
+            value: 'desc', 
+            label: 'Highest to Lowest' 
+        }] 
+    }];
+
     return (
         <div className="app-bg" data-testid="app-filter">
             <div className="row mb-2">
@@ -25,28 +72,7 @@ const Filters = ({ sortBy, orderBy, setSortBy, setOrderBy }) => {
                                 <AppTextHeader appTextHeaderExtraCSS='h6 text-center' text='Filter'/>
                             </div>
                         </div>
-                        <div className="row mb-4">
-                            <div className="col">
-                                <Label labelText="Sort by" labelExtraClass="mb-2"/>
-                                <div className="py-1">
-                                    <RadioButton data-testid="sort-by-pricing" radioButtonName="sort_by" radioButtonValue="pricing" onChange={onChange} isChecked={sortBy==="pricing"} radioButtonLabel="Restaurant pricing"/>
-                                </div>
-                                <div className="py-1">
-                                    <RadioButton data-testid="sort-by-rating" radioButtonName="sort_by" radioButtonValue="rating" onChange={onChange} isChecked={sortBy==="rating"} radioButtonLabel="Restaurant ratings"/>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="col">
-                                <Label labelText="Order by" labelExtraClass="mb-2"/>
-                                <div className="py-1">
-                                    <RadioButton data-testid="order-by-asc" radioButtonName="order_by" radioButtonValue="asc" onChange={onChange} isChecked={orderBy==="asc"} radioButtonLabel="Lowest to Highest"/>
-                                </div>
-                                <div className="py-1">
-                                    <RadioButton data-testid="order-by-desc" radioButtonName="order_by" radioButtonValue="desc" onChange={onChange} isChecked={orderBy==="desc"} radioButtonLabel="Highest to Lowest"/>
-                                </div>
-                            </div>
-                        </div>
+                        {createFilters(filters)}
                     </div>
                 </div>
             </div>
