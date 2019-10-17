@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import RestaurantSearchResult from "./";
+import {RestaurantSearchResult} from "./";
 import Cards from './cards'
 import { findByTestAttr, checkProps } from "../../../utils";
 
@@ -13,7 +13,7 @@ const restuarantSample = {
     "Some quick example text to build on the card title and make up the bulk of the cards content.",
 };
 const expectedProps = {
-  results: [{...restuarantSample, id: 1}],
+  restaurantResult: [{...restuarantSample, id: 1}],
 };
 
 const setup = (props = {}) => {
@@ -45,7 +45,7 @@ describe("Restaurant Result Component", () => {
   describe("Restaurant List render", () => {
     it("Should render restaurant with 2 Cards as passed on props", () => {
       let wrapper = setup({
-        results: [
+        restaurantResult: [
           {...restuarantSample, id: 1},
           {...restuarantSample, id: 2},
         ]
