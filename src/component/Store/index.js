@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useContext } from 'react';
 
 export const GlobalStoreContext = createContext({
   locations: [],
@@ -9,7 +9,9 @@ export const GlobalStoreContext = createContext({
   restaurantResult: [],
 })
 
-function Store ({children}) {
+export const useMyContext = () => useContext(GlobalStoreContext);
+
+function ContextProvider ({children}) {
   const [ globalStore, setGlobalStore ] = useState({
     locations: [],
     options: {},
@@ -23,7 +25,7 @@ function Store ({children}) {
     <GlobalStoreContext.Provider value={[globalStore, setGlobalStore]}>
       {children}
     </GlobalStoreContext.Provider>
-   );
+  );
 }
  
-export default Store;
+export default ContextProvider;
