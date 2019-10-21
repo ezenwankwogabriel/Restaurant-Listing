@@ -10,6 +10,8 @@ import HigerOC from "../hoc";
 export const RestaurantListing = ({ sortType, categories, setGlobalStore }) => {
   const [checkedCategories, setCheckedCategories] = useState([]);
 
+
+
   const listing = {
     imageUrl:
       "https://res.cloudinary.com/nesterpod-com/image/upload/v1570649796/1_Drinks_gtdgfr.png",
@@ -32,13 +34,14 @@ export const RestaurantListing = ({ sortType, categories, setGlobalStore }) => {
   ];
 
   const setRestaurants = () => {
-    setGlobalStore(prev => ({ ...prev, restaurantResult }));
+    // setGlobalStore(prev => ({ ...prev, restaurantResult }));
   };
 
   useEffect(() => {
     // fetch restaurants from api
-    setTimeout(setRestaurants(), 1000);
+    setTimeout(setRestaurants(), 10000);
     // eslint-disable-next-line
+
   }, []);
 
   async function fetchLocation(event) {
@@ -103,7 +106,7 @@ export const RestaurantListing = ({ sortType, categories, setGlobalStore }) => {
     setCheckedCategories(prev => {
       return prev=checkedCategories
     });
-    console.log('hree', checkedCategories)
+    // console.log('hree', checkedCategories)
   }
 
   return (
