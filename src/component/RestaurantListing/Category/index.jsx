@@ -1,18 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import CheckBox from '../../common/Checkbox';
 import AppTextHeader from '../../common/AppTextHeader';
 import AppText from '../../common/AppText';
+import HigerOc from '../../hoc'
 
 import './styles.scss'
 
 export const Category = ({ categories, checkedCategories, updateCategories }) => {
+
     const checkBoxList = categories.length ? categories.map(
         ({ categories: { id, name} }, index) => (
             <div className="mb-1" key={index}>
-            {console.log(index, checkedCategories[index])}
-                <CheckBox data-testid="app-category-item" checkedValue={index} onChange={updateCategories} isChecked={checkedCategories[index] == index} checkboxLabel={name}/>
+                <CheckBox data-testid="app-category-item" checkedValue={index} onChange={updateCategories} isChecked={checkedCategories[index] === index} checkboxLabel={name}/>
             </div>
         )
     ) : <AppText data-testid="no-category" text="No Categories found" appTextExtraCSS="text-center" />;
@@ -43,4 +44,4 @@ Category.propTypes = {
     updateCategories: () => {}
 }
 
-export default Category;
+export default HigerOc(Category);
