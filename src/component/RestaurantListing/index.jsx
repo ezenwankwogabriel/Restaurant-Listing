@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import "./styles.scss";
 import Category from "./Category";
@@ -7,7 +7,9 @@ import RestaurantSearchResult from "./RestaurantSearchResult";
 import RestaurantSearchBox from "./RestaurantSearchBox";
 import HigerOC from "../hoc";
 
-export const RestaurantListing = ({ sortType, setGlobalStore }) => {
+export const RestaurantListing = ({ sortType, categories, setGlobalStore }) => {
+  const [checkedCategories, setCheckedCategories] = useState([]);
+
   const listing = {
     imageUrl:
       "https://res.cloudinary.com/nesterpod-com/image/upload/v1570649796/1_Drinks_gtdgfr.png",
@@ -95,11 +97,24 @@ export const RestaurantListing = ({ sortType, setGlobalStore }) => {
     }
   }
 
+  function updateCategories(e) {
+    const checkedValue = Number(e.target.value);
+    checkedCategories[checkedValue] = checkedValue;
+    setCheckedCategories(prev => {
+      return prev=checkedCategories
+    });
+    console.log('hree', checkedCategories)
+  }
+
   return (
     <div className="listings" data-testid="app-restaurant-search-result">
       <div className="row">
         <div className="col-3">
-          <Category />
+          <Category
+            categories={categories}
+            checkedCategories={checkedCategories}
+            updateCategories={updateCategories}
+          />
           <Filters />
         </div>
         <div className="col-9">

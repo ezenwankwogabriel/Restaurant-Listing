@@ -1,11 +1,11 @@
 import React from 'react'
 import { shallow } from "enzyme";
 
-import Category from "./index";
+import { Category } from "./index";
 import { findByTestAttr, checkProps } from "../../../utils";
 
 const expectedProps = {
-    categoryList: [{ id: 1, name: 'Delivery' }, { id: 2, name: 'Dine-out' }]
+    categories: [ { categories: { id: 1, name: 'Delivery' }}, { categories: { id: 2, name: 'Dine-out' }}]
 };
 
 const setup = (props) => {
@@ -37,7 +37,7 @@ describe('Category component', () => {
 
     describe('Category render item', () => {
         const props = {
-            categoryList: [{ id: 1, name: 'Delivery' }, { id: 2, name: 'Dine-out' }, { id: 3, name: 'Dine-out' }]
+            categories: [{ categories: { id: 1, name: 'Delivery' }}, { categories: { id: 2, name: 'Dine-out' }}, {categories: { id: 3, name: 'Dine-out' }}]
         };
         let wrapper = setup(props);
 
@@ -49,7 +49,7 @@ describe('Category component', () => {
 
     describe('Category renders no item', () => {
         const props = {
-            categoryList: []
+            categories: []
         };
         let wrapper = setup(props);
 

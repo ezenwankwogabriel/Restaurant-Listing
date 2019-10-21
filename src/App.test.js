@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { App } from "./App";
-import Store from "./component/Store";
+import Store from "./Store";
 
 const Index = () => {
   return (
