@@ -10,7 +10,6 @@ export const GlobalStoreContext = createContext({
   message: "Enter Location to search",
   restaurantResult: [],
   categories: [],
-  checkedCategories: [],
 })
 
 export const useMyContext = () => useContext(GlobalStoreContext);
@@ -24,7 +23,6 @@ function ContextProvider ({children}) {
     message: "Enter Location to search",
     restaurantResult: [],
     categories: [],
-    checkedCategories: []
   });
 
   useEffect(() => {
