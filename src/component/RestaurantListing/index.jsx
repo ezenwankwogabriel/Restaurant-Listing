@@ -7,8 +7,7 @@ import RestaurantSearchResult from "./RestaurantSearchResult";
 import RestaurantSearchBox from "./RestaurantSearchBox";
 import HigerOC from "../hoc";
 
-export const RestaurantListing = ({ sortType, categories, setGlobalStore }) => {
-  const [checkedCategories, setCheckedCategories] = useState([]);
+export const RestaurantListing = ({ categories, sortType, setGlobalStore }) => {
 
 
 
@@ -100,13 +99,12 @@ export const RestaurantListing = ({ sortType, categories, setGlobalStore }) => {
     }
   }
 
+  const [checkedCategories, setCheckedCategories] = useState([]);
   function updateCategories(e) {
     const checkedValue = Number(e.target.value);
-    checkedCategories[checkedValue] = checkedValue;
-    setCheckedCategories(prev => {
-      return prev=checkedCategories
-    });
-    // console.log('hree', checkedCategories)
+    if (checkedCategories[checkedValue] >= 0) delete checkedCategories[checkedValue]
+    else checkedCategories[checkedValue] = checkedValue;
+    setCheckedCategories(prev => ({ ...prev, checkedCategories }));
   }
 
   return (
@@ -114,8 +112,8 @@ export const RestaurantListing = ({ sortType, categories, setGlobalStore }) => {
       <div className="row">
         <div className="col-3">
           <Category
-            categories={categories}
             checkedCategories={checkedCategories}
+            categories={categories}
             updateCategories={updateCategories}
           />
           <Filters />

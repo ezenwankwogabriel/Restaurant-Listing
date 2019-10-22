@@ -1,33 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import CheckBox from '../../common/Checkbox';
 import AppTextHeader from '../../common/AppTextHeader';
 import AppText from '../../common/AppText';
+import HigerOc from '../../hoc'
 
 import './styles.scss'
 
-export const Category = ({ categories }) => {
-  const [checkedCategories, setCheckedCategories] = useState(["", 1,2,3]);
-  const [testVal, setTestVal] = useState(10);
 
-    function updateCategories(e){
-    let incre = 10
-    // setInterval(() => {
-    //   setTestVal(prev => prev+ incre)
-    // }, 1000);
-
-    const checkedValue = Number(e.target.value);
-    checkedCategories[checkedValue] = checkedValue.toString();
-    setCheckedCategories(prev => prev=checkedCategories);
-    console.log('hree', checkedCategories)
-  }
+export const Category = ({ categories, checkedCategories, updateCategories }) => {
 
     const checkBoxList = categories.length ? categories.map(
         ({ categories: { id, name} }, index) => (
-            <div className="mb-1" key={id}>
-            {checkedCategories[id]}
-                <CheckBox data-testid="app-category-item" checkedValue={id} onChange={updateCategories} isChecked={checkedCategories[id] === id} checkboxLabel={`${name} - ${testVal}`}/>
+            <div className="mb-1" key={index}>
+                <CheckBox data-testid="app-category-item" checkedValue={index} onChange={updateCategories} isChecked={checkedCategories[index] === index} checkboxLabel={name}/>
             </div>
         )
     ) : <AppText data-testid="no-category" text="No Categories found" appTextExtraCSS="text-center" />;
@@ -38,7 +25,6 @@ export const Category = ({ categories }) => {
                 <div className="col">
                     <div className="p-3">
                         <AppTextHeader appTextHeaderExtraCSS='h6 text-center' text='Category'/>
-        <h1>{testVal}</h1>
                         <div>
                             {checkBoxList}
                         </div>
@@ -59,4 +45,4 @@ Category.propTypes = {
     updateCategories: () => {}
 }
 
-export default Category;
+export default HigerOc(Category);
