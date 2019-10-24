@@ -1,10 +1,7 @@
-// import React, { useState } from 'react';
+import React, { useState } from 'react';
 
-// export const useCategory = () => {
-//     const [checkedCategories, setCheckedCategories] = useState([]);
+export const useCategory = () => {
+    const [checkedCategories, setCheckedCategories] = useState([]);
 
-//     return {checkedCategories, setCheckedCategories};
-// };
-
-// export useCategory;
-
+    return {checkedCategories, setCheckedCategories};
+};

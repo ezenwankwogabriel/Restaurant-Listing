@@ -5,7 +5,9 @@ import { Category } from "./index";
 import { findByTestAttr, checkProps } from "../../../utils";
 
 const expectedProps = {
-    categories: [ { categories: { id: 1, name: 'Delivery' }}, { categories: { id: 2, name: 'Dine-out' }}]
+    categories: [ { categories: { id: 1, name: 'Delivery' }}, { categories: { id: 2, name: 'Dine-out' }}],
+    checkedCategories: ['1','2'],
+    updateCategories: () => {}
 };
 
 const setup = (props) => {
