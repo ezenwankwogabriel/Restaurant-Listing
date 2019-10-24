@@ -23,9 +23,10 @@ const Filters = ({ sortBy, orderBy, setSortBy, setOrderBy }) => {
                         <Label labelText={filter.title} labelExtraClass="mb-2"/>
                         {
                             filter.buttons.map((button, index) => {
+                                const selectedValue = filter.name === 'sort_by' ? sortBy : orderBy;
                                 return(
                                     <div className="py-1" key={index}>
-                                        <RadioButton data-testid={button.testid} radioButtonName={filter.name} radioButtonValue={button.value} onChange={onChange} isChecked={sortBy===button.value} radioButtonLabel={button.label}/>
+                                        <RadioButton data-testid={button.testid} radioButtonName={filter.name} radioButtonValue={button.value} onChange={onChange} isChecked={selectedValue===button.value} radioButtonLabel={button.label}/>
                                     </div>
                                 );
                             })

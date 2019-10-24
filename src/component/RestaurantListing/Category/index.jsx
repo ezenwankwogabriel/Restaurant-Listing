@@ -4,12 +4,18 @@ import PropTypes from 'prop-types';
 import CheckBox from '../../common/Checkbox';
 import AppTextHeader from '../../common/AppTextHeader';
 import AppText from '../../common/AppText';
-import HigerOc from '../../hoc'
 
 import './styles.scss'
 
 
-export const Category = ({ categories, checkedCategories, updateCategories }) => {
+export const Category = ({ categories, checkedCategories, setCheckedCategories }) => {
+
+    function updateCategories(e) {
+        const checkedValue = Number(e.target.value);
+        if (checkedCategories[checkedValue] >= 0) delete checkedCategories[checkedValue]
+        else checkedCategories[checkedValue] = checkedValue;
+        setCheckedCategories(prev => ([ ...prev, checkedCategories ]));
+    }
 
     const checkBoxList = categories.length ? categories.map(
         ({ categories: { id, name} }, index) => (
@@ -37,12 +43,14 @@ export const Category = ({ categories, checkedCategories, updateCategories }) =>
 
 Category.defaultProps = {
     categories: [],
-}
-
-Category.propTypes = {
-    categories: PropTypes.array,
-    checkedCategories: PropTypes.array,
+    checkedCategories: [],
     updateCategories: () => {}
 }
 
-export default HigerOc(Category);
+Category.propTypes = {
+    categories: PropTypes.array.isRequired,
+    checkedCategories: PropTypes.array.isRequired,
+    updateCategories: PropTypes.func.isRequired
+}
+
+export default Category;
