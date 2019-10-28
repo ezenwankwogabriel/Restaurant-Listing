@@ -49,9 +49,9 @@ describe('Search Box Component', () => {
         expect(renderedDiv.length).toBe(3)
       });
       it('should render no location found if not found', async () => {
-        let wrapper = setupComponent({...expectedProps, value: 'hapy'});
+        let wrapper = setupComponent({...expectedProps, value: 'hapy', result: []});
         const renderedDiv = findByTestAttr(wrapper, 'app-search-item');
-        expect(renderedDiv.length).toBe(0)
+        expect(renderedDiv.length).toBe(1)
       });
     });
 });

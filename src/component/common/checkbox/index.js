@@ -23,7 +23,7 @@ Checkbox.propTypes = {
     checkboxExtraClass: PropTypes.string,
     checkboxName: PropTypes.string,
     checkboxLabel: PropTypes.string.isRequired,
-    checkedValue: PropTypes.number.isRequired,
+    checkedValue: PropTypes.string.isRequired,
     isChecked: PropTypes.bool.isRequired,
     onChange: PropTypes.func.isRequired
 };
