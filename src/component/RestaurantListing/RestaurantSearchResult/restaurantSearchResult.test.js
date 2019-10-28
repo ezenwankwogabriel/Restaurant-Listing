@@ -5,15 +5,31 @@ import Cards from './cards'
 import { findByTestAttr, checkProps } from "../../../utils";
 
 const restuarantSample = {
-  image:
-    "https://res.cloudinary.com/nesterpod-com/image/upload/v1570649796/1_Drinks_gtdgfr.png",
-  link: "View More",
-  title: "Card Title",
-  content:
-    "Some quick example text to build on the card title and make up the bulk of the cards content.",
+  id: 1,
+  name: 'Restaurant name',
+  cuisines: 'Coffe and Tea',
+  user_rating: {
+    aggregate_rating: "4.2",
+    rating_text: "Very Good",
+    votes: "39"
+  },
+  phone_numbers: "08011223344",
+  highlights: ["Breakfast", "Dinner", "Lunch", "Outdoor Seating", "Kid Friendly"], 
+  location: {
+    address: "164 Tourist Rd, Rangeville",
+    city: "Rangeville",
+    city_id: 2759,
+    country_id: 14,
+    latitude: "-27.5785450000",
+    locality: "Rangeville",
+    locality_verbose: "Rangeville, Rangeville",
+    longitude: "151.9874570000",
+    zipcode: "4350"
+  },
+  featured_image: "https://res.cloudinary.com/nesterpod-com/image/upload/v1570649796/1_Drinks_gtdgfr.png"
 };
 const expectedProps = {
-  restaurantResult: [{...restuarantSample, id: 1}],
+  restaurantResult: [{restaurants: [restuarantSample]}],
 };
 
 const setup = (props = {}) => {
@@ -44,11 +60,9 @@ describe("Restaurant Result Component", () => {
 
   describe("Restaurant List render", () => {
     it("Should render restaurant with 2 Cards as passed on props", () => {
-      let wrapper = setup({
-        restaurantResult: [
-          {...restuarantSample, id: 1},
-          {...restuarantSample, id: 2},
-        ]
+  
+    let wrapper = setup({
+        restaurantResult: [{restaurants: [restuarantSample,restuarantSample]}]
       });
       expect(wrapper.find(Cards)).toHaveLength(2);
     });

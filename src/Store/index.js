@@ -1,5 +1,6 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import { api } from "../api";
+import { axios } from "axios";
+import { api, source, apiCancelToken } from "../api";
 
 
 export const GlobalStoreContext = createContext({})
@@ -15,12 +16,16 @@ function ContextProvider ({children}) {
         const fetchCategories = async () => {
             setIsGettingCategories(true);
             try {
-                const { data } = await api.get('categories');
+                const { data } = await api.get('categories', { cancelToken: apiCancelToken});
                 setCategories(data.categories);
                 setIsGettingCategories(false);
             } catch (error) {
-                setCategoriesError(error);
-                setIsGettingCategories(false);
+                if (axios.isCancel(error)) {
+                } else {
+                // handle error
+                    setCategoriesError(error);
+                    setIsGettingCategories(false);
+                }
             }
             // try {
             //     const [ categories, restaurants ] = await Promise.all([
@@ -34,6 +39,7 @@ function ContextProvider ({children}) {
             // }
         }
         fetchCategories();
+        return () => {source.cancel('Operation canceled by the user.');}
     }, []);
 
     return (

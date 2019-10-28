@@ -42,7 +42,7 @@ const Filters = ({ sortBy, orderBy, setSortBy, setOrderBy }) => {
         name: 'sort_by', 
         buttons: [{ 
             testid: 'sort-by-pricing', 
-            value: 'pricing', 
+            value: 'cost', 
             label: 'Restaurant pricing' 
         }, { 
             testid: 'sort-by-rating', 

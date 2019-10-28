@@ -14,7 +14,7 @@ export const Category = ({ categories, checkedCategories, setCheckedCategories }
         const checkedValue = Number(e.target.value);
         if (checkedCategories[checkedValue] >= 0) delete checkedCategories[checkedValue]
         else checkedCategories[checkedValue] = checkedValue;
-        setCheckedCategories(prev => ([ ...prev, checkedCategories ]));
+        setCheckedCategories(prev => ([ ...checkedCategories ]));
     }
 
     const checkBoxList = categories.length ? categories.map(
