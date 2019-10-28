@@ -4,7 +4,7 @@ import TextHeader from '../../../common/AppTextHeader';
 import Text from '../../../common/AppText';
 import './styles.scss'
 
-const Cards = ({ imageUrl, cardExtraClass, cardTitle, cardContent, linkText, onClick }) => {
+const Cards = ({ cuisines, user_rating, phone_numbers, highlights, location, imageUrl, cardExtraClass, cardTitle, cardContent, linkText, onClick }) => {
 
   return (
     <div className={`card ${cardExtraClass}`} data-testid="app-card">

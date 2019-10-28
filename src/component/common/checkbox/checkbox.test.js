@@ -11,7 +11,7 @@ describe('Checkbox Component', () => {
                 checkboxExtraClass: 'app-checkbox',
                 checkboxName: 'app_checkbox',
                 checkboxLabel: 'App checkbox',
-                checkedValue: 'checkbox',
+                checkedValue: 1,
                 isChecked: false,
                 onChange: () => console.log('checked')
             };
@@ -27,7 +27,7 @@ describe('Checkbox Component', () => {
                 checkboxExtraClass: 'app-checkbox',
                 checkboxName: 'app_checkbox',
                 checkboxLabel: 'App checkbox',
-                checkedValue: 'checkbox',
+                checkedValue: 1,
                 isChecked: false,
                 onChange: () => console.log('checked')
             };
@@ -51,7 +51,7 @@ describe('Checkbox Component', () => {
             checkboxExtraClass: 'app-checkbox',
             checkboxName: 'app_checkbox',
             checkboxLabel: 'App checkbox',
-            checkedValue: 'checkbox',
+            checkedValue: 1,
             isChecked: false,
             onChange: mockFunction
         };

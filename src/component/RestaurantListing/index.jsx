@@ -12,10 +12,10 @@ import { useFilter } from "../../Store/hooks/useFilter";
 
 
 
-export const RestaurantListing = ({ categories, sortType, setGlobalStore }) => {
+export const RestaurantListing = ({ categories, sortType }) => {
     const { checkedCategories, setCheckedCategories } = useCategory();
     const { sortBy, setSortBy, orderBy, setOrderBy } = useFilter();
-    const { restaurantListings, setRestaurantListings } = useRestaurantListings(checkedCategories, sortBy, orderBy);
+    const { restaurantListings } = useRestaurantListings(checkedCategories, sortBy, orderBy);
 
 
     const listing = {
@@ -38,53 +38,53 @@ export const RestaurantListing = ({ categories, sortType, setGlobalStore }) => {
     ];
 
     const setRestaurants = () => {
-        setRestaurantListings(prev => ([ ...prev, ...restaurantResult ]));
+        // setRestaurantListings(prev => ([ ...prev, ...restaurantResult ]));
     };
 
-    useEffect(() => {
-        // fetch restaurants from api
-        setTimeout(setRestaurants(), 10000);
-        // eslint-disable-next-line
+    // useEffect(() => {
+    //     // fetch restaurants from api
+    //     setTimeout(setRestaurants(), 10000);
+    //     // eslint-disable-next-line
 
-    }, []);
+    // }, []);
 
     async function fetchLocation(event) {
-        const value = event.target.value;
-        if (sortType !== "Location")
-        return setGlobalStore(prev => ({ ...prev, value }));
-        if (!value)
-        return setGlobalStore(prev => ({
-            ...prev,
-            message: "Enter Location to search",
-            value: ""
-        }));
-        setGlobalStore(prev => ({ ...prev, value, message: "Loading ..." }));
-        const list = {
-        entity_type: "city",
-        entity_id: 10913,
-        title: "Driftwood, Texas",
-        latitude: 30.11712915,
-        longitude: -98.0131239,
-        city_id: 10913,
-        city_name: "Driftwood",
-        country_id: 216,
-        country_name: "United States"
-        };
-        const data = [{ ...list }, { ...list }, { ...list }];
-        await setTimeout(
-        () =>
-            setGlobalStore(prev => ({
-            ...prev,
-            locations: data,
-            message: "location not found"
-            })),
-        1000
-        );
+        // const value = event.target.value;
+        // if (sortType !== "Location")
+        // return setGlobalStore(prev => ({ ...prev, value }));
+        // if (!value)
+        // return setGlobalStore(prev => ({
+        //     ...prev,
+        //     message: "Enter Location to search",
+        //     value: ""
+        // }));
+        // setGlobalStore(prev => ({ ...prev, value, message: "Loading ..." }));
+        // const list = {
+        // entity_type: "city",
+        // entity_id: 10913,
+        // title: "Driftwood, Texas",
+        // latitude: 30.11712915,
+        // longitude: -98.0131239,
+        // city_id: 10913,
+        // city_name: "Driftwood",
+        // country_id: 216,
+        // country_name: "United States"
+        // };
+        // const data = [{ ...list }, { ...list }, { ...list }];
+        // await setTimeout(
+        // () =>
+        //     setGlobalStore(prev => ({
+        //     ...prev,
+        //     locations: data,
+        //     message: "location not found"
+        //     })),
+        // 1000
+        // );
     }
 
     function handleDropDownChange(context) {
         const value = context.target.value;
-        setGlobalStore(prev => ({ ...prev, sortType: value, value: "" }));
+        // setGlobalStore(prev => ({ ...prev, sortType: value, value: "" }));
     }
 
     function findRestaurantByLocationId() {}
