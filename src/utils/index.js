@@ -10,8 +10,8 @@ export const checkProps = (component, expectedProps) => {
     return propsErr;
 };
 
-export const querybuilder = (checkedCategories, sortBy, orderBy) => {
-    let query='';
+export const querybuilder = (checkedCategories, page, rowsPerPage, sortBy, orderBy, searchBy) => {
+    let query=`?start=${page}&count=${rowsPerPage}&`;
     if(checkedCategories.length > 0){
         var filtered = checkedCategories.filter(function (el) {
             return el != null;
@@ -20,14 +20,9 @@ export const querybuilder = (checkedCategories, sortBy, orderBy) => {
         const categoryIds = filtered.join(',');
         query = categoryIds !== '' ? `?category=${categoryIds}` : '';
     }
-    if(sortBy){
-        const prefix = query ==='' ? '?' : `${query}&`;
-        query = `${prefix}sort=${sortBy}`;
-    }
-    if(orderBy){
-        const prefix = query ==='' ? '?' : `${query}&`;
-        query = `${prefix}sort=${orderBy}`;
-    }
+    if (sortBy) query = `${query}sort=${sortBy}`;
+    if (orderBy) query = `${query}sort=${orderBy}`;
+    if (searchBy) query = `${query}q=${searchBy}`
     return query;
 }
 
@@ -51,5 +46,5 @@ export const filterRestaurantResult = (result) => {
         };
         return obj;
     })
-    return [{ restaurants: newResult, results_found: result.results_found, results_shown: result.results_shown, results_start: result.results_start }];
+    return  { restaurants: newResult, results_found: result.results_found, results_shown: result.results_shown, results_start: result.results_start };
 }

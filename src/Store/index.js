@@ -20,23 +20,13 @@ function ContextProvider ({children}) {
                 setCategories(data.categories);
                 setIsGettingCategories(false);
             } catch (error) {
-                if (axios.isCancel(error)) {
+                if (axios && axios.isCancel(error)) {
                 } else {
                 // handle error
                     setCategoriesError(error);
                     setIsGettingCategories(false);
                 }
             }
-            // try {
-            //     const [ categories, restaurants ] = await Promise.all([
-            //     getCategories(),
-            //     getRestaurantListing(),
-            //     ]);
-
-            //     setGlobalStore(prev => ({ ...prev, restaurantResult: restaurants.restaurants, categories: categories.categories }));
-            // } catch (error) {
-            //     console.log(error)
-            // }
         }
         fetchCategories();
         return () => {source.cancel('Operation canceled by the user.');}
