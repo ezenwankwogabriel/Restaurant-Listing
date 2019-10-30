@@ -6,8 +6,8 @@ export const useRestaurantListings = (checkedCategories, sortBy, orderBy, search
     const [restaurantListings, setRestaurantListings] = useState({});
     const [isGettingRestaurantListings, setIsGettingRestaurantListings] = useState(false);
     const [restaurantListingsError, setRestaurantListingsError] = useState('');
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(12);
+    const [page, setPage] = useState(0);
+    const [rowsPerPage, setRowsPerPage] = useState(12);
 
     useEffect(() => {
         const query = querybuilder(checkedCategories, page, rowsPerPage, sortBy, orderBy, searchBy);

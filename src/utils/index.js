@@ -11,7 +11,7 @@ export const checkProps = (component, expectedProps) => {
 };
 
 export const querybuilder = (checkedCategories, page, rowsPerPage, sortBy, orderBy, searchBy) => {
-    let query=`?start=${page}&count=${rowsPerPage}&`;
+    let query='';
     if(checkedCategories.length > 0){
         var filtered = checkedCategories.filter(function (el) {
             return el != null;
@@ -20,10 +20,21 @@ export const querybuilder = (checkedCategories, page, rowsPerPage, sortBy, order
         const categoryIds = filtered.join(',');
         query = categoryIds !== '' ? `?category=${categoryIds}` : '';
     }
-    if (sortBy) query = `${query}sort=${sortBy}`;
-    if (orderBy) query = `${query}sort=${orderBy}`;
-    if (searchBy) query = `${query}q=${searchBy}`
+    if(sortBy){
+        const prefix = query ==='' ? '?' : `${query}&`;
+        query = `${prefix}sort=${sortBy}`;
+    }
+    if(orderBy){
+        const prefix = query ==='' ? '?' : `${query}&`;
+        query = `${prefix}sort=${orderBy}`;
+    }
+    if(searchBy) {
+        const prefix = query ==='' ? '?' : `${query}&`;
+        query = `${prefix}q=${searchBy}`;
+    }
     return query;
+    // if (searchBy) query = `${query}q=${searchBy}`
+    // return query;
 }
 
 export const filterRestaurantResult = (result) => {

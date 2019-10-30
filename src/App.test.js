@@ -12,8 +12,18 @@ const Index = () => {
 };
 
 export default Index;
-it("renders without crashing", () => {
-  const div = document.createElement("div");
-  ReactDOM.render(<Index />, div);
-  ReactDOM.unmountComponentAtNode(div);
+describe('', () => {
+  const consoleError = console.error;
+  beforeAll(() => {
+    jest.spyOn(console, 'error').mockImplementation((...args) => {
+      if (!args[0].includes('Warning: An update to %s inside a test was not wrapped in act')) {
+        consoleError(...args);
+      }
+    });
+  });
+  it("renders without crashing", () => {
+    const div = document.createElement("div");
+    ReactDOM.render(<Index />, div);
+    ReactDOM.unmountComponentAtNode(div);
+  });
 });

@@ -1,11 +1,7 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
-import { axios } from "axios";
-import { api, source, apiCancelToken } from "../api";
-
+import React, { createContext, useState, useEffect } from 'react';
+import { api, source, apiCancelToken, $axios } from "../api";
 
 export const GlobalStoreContext = createContext({})
-
-export const useMyContext = () => useContext(GlobalStoreContext);
 
 function ContextProvider ({children}) {
     const [ categories, setCategories ] = useState([]);
@@ -20,7 +16,7 @@ function ContextProvider ({children}) {
                 setCategories(data.categories);
                 setIsGettingCategories(false);
             } catch (error) {
-                if (axios && axios.isCancel(error)) {
+                if ($axios.isCancel(error)) { // handle return cancelled error
                 } else {
                 // handle error
                     setCategoriesError(error);

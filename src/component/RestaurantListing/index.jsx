@@ -11,6 +11,7 @@ import { useRestaurantListings } from "../../Store/hooks/useRestaurantListings";
 import { useFilter } from "../../Store/hooks/useFilter";
 import useFetchLocation from '../../Store/hooks/fetchLocation';
 import Pagination from '../common/Pagination';
+import { is } from "@babel/types";
 
 
 export const RestaurantListing = ({ categories }) => {
@@ -19,7 +20,14 @@ export const RestaurantListing = ({ categories }) => {
     const { sortBy, setSortBy, orderBy, setOrderBy, searchBy, setSearchBy } = useFilter();
     const { searchResults, notification } = useFetchLocation(searchItem);
     // const {results_found, results_shown, results_start} = restaurantListings;
-    const { restaurantListings, page, setPage, rowsPerPage, setRowsPerPage } = useRestaurantListings(checkedCategories, sortBy, orderBy, searchBy);
+    const {
+        restaurantListings,
+        page,
+        setPage,
+        rowsPerPage,
+        setRowsPerPage,
+        isGettingRestaurantListings
+    } = useRestaurantListings(checkedCategories, sortBy, orderBy, searchBy);
 
     function searchRestaurantBySortType(sortType) {
         setPage(0);
@@ -42,6 +50,21 @@ export const RestaurantListing = ({ categories }) => {
         setRowsPerPage(parseInt(event.target.value, 12));
         setPage(0);
     };
+
+    const responseHandle = (message) => (<div className="centralize"> {message} </div>)
+
+    const showPagination = () => (
+        restaurantListings.results_found && !isGettingRestaurantListings ? <Pagination
+            rowsPerPageOptions={1}
+            rows={restaurantListings && restaurantListings.results_found}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            handleChangePage={handleChangePage}
+            handleChangeRowsPerPage={handleChangeRowsPerPage}
+        /> : !isGettingRestaurantListings? 
+        responseHandle('No restaurants Found') : 
+        responseHandle('Fetching Restaurants ...')
+    )
 
     return (
         <div className="listings" data-testid="app-restaurant-search-result">
@@ -71,14 +94,7 @@ export const RestaurantListing = ({ categories }) => {
                     <RestaurantSearchResult 
                         restaurantResult={restaurantListings.restaurants}
                     />
-                    {restaurantListings.results_found ? <Pagination
-                        rowsPerPageOptions={1}
-                        rows={restaurantListings && restaurantListings.results_found}
-                        rowsPerPage={rowsPerPage}
-                        page={page}
-                        handleChangePage={handleChangePage}
-                        handleChangeRowsPerPage={handleChangeRowsPerPage}
-                    /> : <div className="centralize"> Fetching Restaurants ... </div>}
+                    {showPagination()}
                 </div>
             </div>
         </div>
