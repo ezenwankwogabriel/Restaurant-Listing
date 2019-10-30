@@ -2,16 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './styles.scss';
 
-const SearchBox = ({ value, result, onChange, message }) => {
-
+const SearchBox = ({ value, result, onChange, isFetching }) => {
   function displayList() {
-    if (result.length > 0 && message !== 'Fetching locations ... ')
-      return (
-          result.map((location, index) => (
-            <option data-testid="app-search-item" className="dropDownList" key={index}>{location.title}</option>)
-          )
-        );
-    return (<option data-testid="app-search-item" className="dropDownList">{message}</option>)
+    return (result.map((location, index) => (
+              <option data-testid="app-search-item" className="dropDownList" key={index}>{location.title}</option>)
+            ))
   }
 
   return (

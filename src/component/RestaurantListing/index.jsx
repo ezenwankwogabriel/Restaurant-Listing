@@ -10,7 +10,6 @@ import { useCategory } from "../../Store/hooks/useCategory";
 import { useRestaurantListings } from "../../Store/hooks/useRestaurantListings";
 import { useFilter } from "../../Store/hooks/useFilter";
 import useFetchLocation from '../../Store/hooks/fetchLocation';
-import Pagination from '../common/Pagination';
 import { is } from "@babel/types";
 
 
@@ -18,7 +17,7 @@ export const RestaurantListing = ({ categories }) => {
     const [searchItem, setSearchItem] = useState('');
     const { checkedCategories, setCheckedCategories } = useCategory();
     const { sortBy, setSortBy, orderBy, setOrderBy, searchBy, setSearchBy } = useFilter();
-    const { searchResults, notification } = useFetchLocation(searchItem);
+    const { searchResults, isFetching } = useFetchLocation(searchItem);
     // const {results_found, results_shown, results_start} = restaurantListings;
     const {
         restaurantListings,
@@ -47,21 +46,21 @@ export const RestaurantListing = ({ categories }) => {
     };
 
     const handleChangeRowsPerPage = event => {
-        setRowsPerPage(parseInt(event.target.value, 12));
+        setRowsPerPage(parseInt(event.target.value, rowsPerPage));
         setPage(0);
     };
 
     const responseHandle = (message) => (<div className="centralize"> {message} </div>)
 
-    const showPagination = () => (
-        restaurantListings.results_found && !isGettingRestaurantListings ? <Pagination
-            rowsPerPageOptions={1}
-            rows={restaurantListings && restaurantListings.results_found}
-            rowsPerPage={rowsPerPage}
+    const restaurantResults = () => (
+        restaurantListings.results_found && !isGettingRestaurantListings ?
+        <RestaurantSearchResult 
+            listings={restaurantListings}
             page={page}
+            rowsPerPage={rowsPerPage}
             handleChangePage={handleChangePage}
             handleChangeRowsPerPage={handleChangeRowsPerPage}
-        /> : !isGettingRestaurantListings? 
+    /> : !isGettingRestaurantListings? 
         responseHandle('No restaurants Found') : 
         responseHandle('Fetching Restaurants ...')
     )
@@ -87,14 +86,11 @@ export const RestaurantListing = ({ categories }) => {
                         search={searchItem}
                         resetSearch={() => setSearchItem('')}
                         searchResults={searchResults}
-                        notification={notification}
+                        isFetching={isFetching}
                         action={fetchSortBy}
                         searchRestaurant={searchRestaurantBySortType}
                     />
-                    <RestaurantSearchResult 
-                        restaurantResult={restaurantListings.restaurants}
-                    />
-                    {showPagination()}
+                    {restaurantResults()}
                 </div>
             </div>
         </div>
