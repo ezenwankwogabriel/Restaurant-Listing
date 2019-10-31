@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import "./style.scss";
 
 
-const AppText = ({appTextExtraCSS, size, text}) => {
+const AppText = ({appTextExtraCSS, size, text, children}) => {
     return (
-        <p data-testid="app-text" className={`${appTextExtraCSS} ${size}`}>{text}</p>
+        <p data-testid="app-text" className={`${appTextExtraCSS} ${size}`}>{children || text}</p>
     )
 }
 
