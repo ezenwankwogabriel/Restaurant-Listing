@@ -4,9 +4,9 @@ import { findByTestAttr, checkProps } from "../../../utils";
 import Pagination from './index';
 
 const expectedProps = {
-  rows: 10,
+  rows: 24,
   page: 1,
-  rowsPerPage: 10,
+  rowsPerPage: 12,
   handleChangePage: () => console.log('changed'),
   handleChangeRowsPerPage: () => console.log('clicked')
 };

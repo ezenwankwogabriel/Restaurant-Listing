@@ -7,23 +7,7 @@ export const api = axios.create({
 })
 
 const CancelToken = axios.CancelToken;
+export const $axios = axios;
 export const source = CancelToken.source();
 export const apiCancelToken = source.token;
 
-export const getLocations = async ({name, count=10}) => {
-    try {
-        const { data } = await api.get(`locations?query=${name}&count=${count}`);
-        return data;
-    } catch(ex) {
-        throw new Error(ex);
-    }
-}
-
-export const getRestaurantListing = async () => {
-    try {
-        const { data } = await api.get('search');
-        return data;
-    } catch (error) {
-        throw new Error(error);
-    }
-}

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import useDebounce from './use-debounce';
-import * as api from '../../api';
+import { api, apiCancelToken, source, $axios } from '../../api';
 
 const useFetchLocation = (value) => {
   const [notification, setNotification] = useState('Enter Location to search');
@@ -14,13 +14,18 @@ const useFetchLocation = (value) => {
       if (!search) return;
       setNotification('Fetching locations ... ');
       try {
-        const response = await api.getLocations({name: search});
-        response.location_suggestions.length === 0 ? setNotification('No locations found') : setNotification('');
+        const query = `locations?query=${search}&count=${10}`;
+        const { data } = await api.get(query, { cancelToken: apiCancelToken });
+        data.location_suggestions.length === 0 ? setNotification('No locations found') : setNotification('');
         
-        setSearchResult(response.location_suggestions)
+        setSearchResult(data.location_suggestions)
       } catch(ex) {
-        setNotification('Error fetching location');
-        setError(ex.message);
+        if ($axios.isCancel(ex))  {
+          console.log(ex.message)
+        } else {
+          setNotification('Error fetching location');
+          setError(ex.message);
+        }
       }
     }
     if (debouncedSearchTerm)
@@ -28,6 +33,7 @@ const useFetchLocation = (value) => {
     else
       setSearchResult([])
     fetchLocation();
+    // return () => {source.cancel('Operation canceled by the user.');}
   }, [debouncedSearchTerm]);
 
 

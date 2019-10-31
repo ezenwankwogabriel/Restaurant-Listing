@@ -10,7 +10,7 @@ export const checkProps = (component, expectedProps) => {
     return propsErr;
 };
 
-export const querybuilder = (checkedCategories, sortBy, orderBy) => {
+export const querybuilder = (checkedCategories, page, rowsPerPage, sortBy, orderBy, searchBy) => {
     let query='';
     if(checkedCategories.length > 0){
         var filtered = checkedCategories.filter(function (el) {
@@ -28,7 +28,13 @@ export const querybuilder = (checkedCategories, sortBy, orderBy) => {
         const prefix = query ==='' ? '?' : `${query}&`;
         query = `${prefix}sort=${orderBy}`;
     }
+    if(searchBy) {
+        const prefix = query ==='' ? '?' : `${query}&`;
+        query = `${prefix}q=${searchBy}`;
+    }
     return query;
+    // if (searchBy) query = `${query}q=${searchBy}`
+    // return query;
 }
 
 export const filterRestaurantResult = (result) => {
@@ -51,5 +57,5 @@ export const filterRestaurantResult = (result) => {
         };
         return obj;
     })
-    return [{ restaurants: newResult, results_found: result.results_found, results_shown: result.results_shown, results_start: result.results_start }];
+    return  { restaurants: newResult, results_found: result.results_found, results_shown: result.results_shown, results_start: result.results_start };
 }
