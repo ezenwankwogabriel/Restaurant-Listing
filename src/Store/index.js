@@ -20,12 +20,13 @@ function ContextProvider ({children}) {
                 setCategories(data.categories);
                 setIsGettingCategories(false);
             } catch (error) {
-                if (axios.isCancel(error)) {
-                } else {
-                // handle error
-                    setCategoriesError(error);
-                    setIsGettingCategories(false);
-                }
+                console.log(error);
+                // if (axios.isCancel(error)) {
+                // } else {
+                // // handle error
+                //     setCategoriesError(error);
+                //     setIsGettingCategories(false);
+                // }
             }
             // try {
             //     const [ categories, restaurants ] = await Promise.all([

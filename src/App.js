@@ -11,7 +11,7 @@ import {
 // import Label from './component/common/Label';
 import RestaurantListings from './component/RestaurantListing';
 import HigherOC from './component/hoc';
-import RestaurantDetails from './component/RestaurantDetails.js';
+import RestaurantDetails from './component/RestaurantDetails/index.js';
 
 export function App() {
     return(
