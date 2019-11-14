@@ -26,10 +26,10 @@ const restuarantSample = {
     longitude: "151.9874570000",
     zipcode: "4350"
   },
-  featured_image: "https://res.cloudinary.com/nesterpod-com/image/upload/v1570649796/1_Drinks_gtdgfr.png"
+  thumb: "https://res.cloudinary.com/nesterpod-com/image/upload/v1570649796/1_Drinks_gtdgfr.png"
 };
 const expectedProps = {
-  restaurantResult: [restuarantSample],
+  listings: { restaurants: [restuarantSample] },
 };
 
 const setup = (props = {}) => {
@@ -55,6 +55,7 @@ describe("Restaurant Result Component", () => {
 
   describe("Restaurant List render", () => {
     let wrapper = setup();
+    
     it("Should render restaurant without an error", () => {
       const restaurantComponent = findByTestAttr(wrapper, "app-results");
       expect(restaurantComponent.length).toBe(1);
@@ -65,9 +66,10 @@ describe("Restaurant Result Component", () => {
     it("Should render restaurant with 2 Cards as passed on props", () => {
   
     let wrapper = setup({
-        restaurantResult: [restuarantSample,restuarantSample]
-      });
-      expect(wrapper.find(Cards)).toHaveLength(2);
+      listings: { restaurants: [restuarantSample,restuarantSample] }
+    });
+
+    expect(wrapper.find(Cards)).toHaveLength(2);
     });
   });
 });
