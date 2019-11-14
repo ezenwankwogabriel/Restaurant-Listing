@@ -11,27 +11,16 @@ export const checkProps = (component, expectedProps) => {
 };
 
 export const querybuilder = (checkedCategories, page, rowsPerPage, sortBy, orderBy, searchBy) => {
-    let query='';
-    if(checkedCategories.length > 0){
-        var filtered = checkedCategories.filter(function (el) {
-            return el != null;
-        });
+    let query=`?count=${rowsPerPage}&start=${page * rowsPerPage}&`;
 
+    if (checkedCategories.length > 0) {
+        var filtered = checkedCategories.filter((el) =>  el != null );
         const categoryIds = filtered.join(',');
-        query = categoryIds !== '' ? `?category=${categoryIds}` : '';
+        query += `?category=${categoryIds}`;
     }
-    if(sortBy){
-        const prefix = query ==='' ? '?' : `${query}&`;
-        query = `${prefix}sort=${sortBy}`;
-    }
-    if(orderBy){
-        const prefix = query ==='' ? '?' : `${query}&`;
-        query = `${prefix}sort=${orderBy}`;
-    }
-    if(searchBy) {
-        const prefix = query ==='' ? '?' : `${query}&`;
-        query = `${prefix}q=${searchBy}`;
-    }
+    if (sortBy) query += `sort=${sortBy}`
+    if (orderBy) query += `order=${orderBy}`;
+    if (searchBy) query += `q=${searchBy}`;
     return query;
     // if (searchBy) query = `${query}q=${searchBy}`
     // return query;

@@ -16,7 +16,7 @@ const list = {
 };
 const expectedProps = {
   value: 'data',
-  result: [{...list}, {...list}, {...list}],
+  result: {restaurants: [{...list}, {...list}, {...list}]},
   onChange: () => {},
   message: 'not found',
 };
@@ -49,7 +49,7 @@ describe('Search Box Component', () => {
         expect(renderedDiv.length).toBe(3)
       });
       it('should render no location found if not found', async () => {
-        let wrapper = setupComponent({...expectedProps, value: 'hapy', result: []});
+        let wrapper = setupComponent({...expectedProps, value: 'hapy', result: { restaurants: []}});
         const renderedDiv = findByTestAttr(wrapper, 'app-search-item');
         expect(renderedDiv.length).toBe(1)
       });
