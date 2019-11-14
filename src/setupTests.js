@@ -5,3 +5,5 @@ Enzyme.configure({
     adapter: new EnzymeAdapter(),
     disableLifecycleMethods: true
 });
+
+global.scrollTo = jest.fn()

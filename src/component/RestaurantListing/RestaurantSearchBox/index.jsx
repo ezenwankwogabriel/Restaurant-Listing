@@ -8,7 +8,7 @@ import SearchBox from './searchBox';
 import './styles.scss';
 import HigherOC from '../../hoc';
 
-export const RestaurantSearchBox = ({action, resetSearch, notification, search, searchResults, searchRestaurant}) => {
+export const RestaurantSearchBox = ({action, resetSearch, isFetching, search, searchResults, searchRestaurant}) => {
 
   const [dropDownState, setDropDownState] = useState('Location');
 
@@ -37,13 +37,13 @@ export const RestaurantSearchBox = ({action, resetSearch, notification, search, 
         { dropDownState === 'Location' ?
           <SearchBox
             value={search}
-            message={notification}
+            isFetching={isFetching}
             result={searchResults}
             onChange={(event) => action(event.target.value)}
           /> : 
           <InputBox
             value={search}
-            message={notification}
+            isFetching={isFetching}
             result={searchResults}
             onChange={(event) => action(event.target.value, false)}
           />

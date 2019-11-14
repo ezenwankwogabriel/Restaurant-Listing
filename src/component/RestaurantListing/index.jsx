@@ -10,20 +10,29 @@ import { useCategory } from "../../Store/hooks/useCategory";
 import { useRestaurantListings } from "../../Store/hooks/useRestaurantListings";
 import { useFilter } from "../../Store/hooks/useFilter";
 import useFetchLocation from '../../Store/hooks/fetchLocation';
-import Pagination from '../common/Pagination';
+import { is } from "@babel/types";
 
 
 export const RestaurantListing = ({ categories }) => {
     const [searchItem, setSearchItem] = useState('');
     const { checkedCategories, setCheckedCategories } = useCategory();
-    const { sortBy, setSortBy, orderBy, setOrderBy } = useFilter();
-    const { restaurantListings } = useRestaurantListings(checkedCategories, sortBy, orderBy);
-    const { searchResults, notification } = useFetchLocation(searchItem);
+    const { sortBy, setSortBy, orderBy, setOrderBy, searchBy, setSearchBy } = useFilter();
+    const { searchResults, isFetching } = useFetchLocation(searchItem);
+    // const {results_found, results_shown, results_start} = restaurantListings;
+    const {
+        restaurantListings,
+        page,
+        setPage,
+        rowsPerPage,
+        setRowsPerPage,
+        isGettingRestaurantListings
+    } = useRestaurantListings(checkedCategories, sortBy, orderBy, searchBy);
 
     function searchRestaurantBySortType(sortType) {
+        setPage(0);
         switch(sortType) {
-            case 'Location': console.log('hello', searchItem); break;
-            case 'Restaurant': console.log('hello', searchItem); break;
+            case 'Location': setSearchBy(searchItem); break;
+            case 'Restaurant': setSearchBy(searchItem); break;
             default: break;
         }
     }
@@ -31,6 +40,30 @@ export const RestaurantListing = ({ categories }) => {
     async function fetchSortBy(value) {
         setSearchItem(value);
     }
+
+    const handleChangePage = (event, newPage) => {
+        setPage(newPage);
+    };
+
+    const handleChangeRowsPerPage = event => {
+        setRowsPerPage(parseInt(event.target.value, rowsPerPage));
+        setPage(0);
+    };
+
+    const responseHandle = (message) => (<div className="centralize"> {message} </div>)
+
+    const restaurantResults = () => (
+        restaurantListings.results_found && !isGettingRestaurantListings ?
+        <RestaurantSearchResult 
+            listings={restaurantListings}
+            page={page}
+            rowsPerPage={rowsPerPage}
+            handleChangePage={handleChangePage}
+            handleChangeRowsPerPage={handleChangeRowsPerPage}
+    /> : !isGettingRestaurantListings? 
+        responseHandle('No restaurants Found') : 
+        responseHandle('Fetching Restaurants ...')
+    )
 
     return (
         <div className="listings" data-testid="app-restaurant-search-result">
@@ -53,20 +86,11 @@ export const RestaurantListing = ({ categories }) => {
                         search={searchItem}
                         resetSearch={() => setSearchItem('')}
                         searchResults={searchResults}
-                        notification={notification}
+                        isFetching={isFetching}
                         action={fetchSortBy}
                         searchRestaurant={searchRestaurantBySortType}
                     />
-                    <RestaurantSearchResult 
-                        restaurantResult={restaurantListings}
-                    />
-                    <Pagination
-                        rows={[]}
-                        rowsPerPage={12}
-                        page={0}
-                        handleChangePage={() => {}}
-                        handleChangeRowsPerPage={() => {}}
-                    />
+                    {restaurantResults()}
                 </div>
             </div>
         </div>

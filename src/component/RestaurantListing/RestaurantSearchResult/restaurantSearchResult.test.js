@@ -29,7 +29,7 @@ const restuarantSample = {
   featured_image: "https://res.cloudinary.com/nesterpod-com/image/upload/v1570649796/1_Drinks_gtdgfr.png"
 };
 const expectedProps = {
-  restaurantResult: [{restaurants: [restuarantSample]}],
+  restaurantResult: [restuarantSample],
 };
 
 const setup = (props = {}) => {
@@ -42,9 +42,12 @@ const setup = (props = {}) => {
   return component;
 };
 
+// beforeEach(() => {
+// })
+
 describe("Restaurant Result Component", () => {
   describe("Checking propTypes", () => {
-    it("Should not throw error", () => {
+    it("Should not throw error", () => {      
       const restaurantError = checkProps(RestaurantSearchResult, expectedProps);
       expect(restaurantError).toBeUndefined();
     });
@@ -62,7 +65,7 @@ describe("Restaurant Result Component", () => {
     it("Should render restaurant with 2 Cards as passed on props", () => {
   
     let wrapper = setup({
-        restaurantResult: [{restaurants: [restuarantSample,restuarantSample]}]
+        restaurantResult: [restuarantSample,restuarantSample]
       });
       expect(wrapper.find(Cards)).toHaveLength(2);
     });
