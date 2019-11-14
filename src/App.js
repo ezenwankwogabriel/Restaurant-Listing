@@ -11,6 +11,7 @@ import {
 // import Label from './component/common/Label';
 import RestaurantListings from './component/RestaurantListing';
 import HigherOC from './component/hoc';
+import RestaurantDetails from './component/RestaurantDetails/index.js';
 
 export function App() {
     return(
@@ -19,10 +20,17 @@ export function App() {
                 <div className="col">
                     <Router>
                         <Switch>
-                            <Route path="/">
+                            <Route exact path="/">
                                 <div className="row">
                                     <div className="col hello">
                                         <RestaurantListings />
+                                    </div>
+                                </div>
+                            </Route>
+                            <Route exact path="/details">
+                                <div className="row">
+                                    <div className="col hello">
+                                        <RestaurantDetails/>
                                     </div>
                                 </div>
                             </Route>

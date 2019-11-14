@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 
-const AppTextHeader = ({appTextHeaderExtraCSS, text}) => {
+const AppTextHeader = ({appTextHeaderExtraCSS, text, children}) => {
     return (
-        <h1 data-testid="app-text-header" className={`${appTextHeaderExtraCSS}`}>{text}</h1>
+        <h1 data-testid="app-text-header" className={`${appTextHeaderExtraCSS}`}>{children || text}</h1>
     )
 }
 
