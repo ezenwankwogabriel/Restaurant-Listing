@@ -10,7 +10,7 @@ import RestaurantSearchBox from "./RestaurantSearchBox";
 
 const setupComponent = props => shallow(<RestaurantListing />);
 
-  describe("Search Box Component", () => {
+  describe("Restaurant Listing Component", () => {
     let wrapper = setupComponent();
 
     it("Should render without an error", () => {

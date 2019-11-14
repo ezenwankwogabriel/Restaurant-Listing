@@ -1,48 +1,11 @@
-import React from "react";
-import PropTypes from 'prop-types';
+import React from 'react'
+import { shallow } from "enzyme";
 
-import AppTextHeader from "../../common/AppTextHeader";
-import AppText from "../../common/AppText";
+import RestaurantReviews from "./index";
+import { findByTestAttr, checkProps } from "../../../utils";
 
-const RestaurantReviews = ({ reviews }) => {
-    let count = 0
-    return (
-        <div className="row app-bg mt-3 ml-0"  data-testid="app-restaurant-reviews">
-            <div className="col">
-                <div className="p-3">
-                    <AppTextHeader appTextHeaderExtraCSS='h3'>Reviews</AppTextHeader>
-                    { reviews.length > 0 && reviews.map(review => {
-                        count++;
-                        let hr = (count < reviews.length) ? (<hr/>): '';
-                        return(
-                            <div key={review.review.id}>
-                                <div className='row'>
-                                    <div className="col-auto">
-                                        <img className="img-fluid img-thumbnail rounded-circle" width="50px" src={review.review.user.profile_image} alt={review.review.user.name} data-testid="user-img"/>
-                                    </div>
-                                    <div className="col">
-                                        <AppText data-testid="user-name" appTextExtraCSS='mb-0'>{`${review.review.user.name} (${review.review.rating}/5.0)`}</AppText>
-                                        <AppText data-testid="review-time">{review.review.review_time_friendly}</AppText>
-                                        <div className='row'>
-                                            <div className="col">
-                                                <AppText data-testid="review-text">{review.review.review_text}</AppText>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                {hr}
-                            </div>
-                        )
-                    })
-                    }
-                </div>
-            </div>
-        </div>
-    )
-}
-
-RestaurantReviews.defaultProps = {
-    reviews: [{ 
+const expectedProps = {
+    reviews: [{
         review: {
             comments_count: 0,
             id: 45997008,
@@ -64,8 +27,8 @@ RestaurantReviews.defaultProps = {
                 zomato_handle: "miatua"
             }
         }
-    },{ 
-        review: { 
+    },{
+        review: {
             comments_count: 0,
             id: 39987267,
             likes: 1,
@@ -88,8 +51,51 @@ RestaurantReviews.defaultProps = {
     }]
 };
 
-RestaurantReviews.propTypes = {
-    reviews: PropTypes.array
+const setup = (props) => {
+    const componentProps = {
+        ...expectedProps,
+        ...props
+    };
+
+    const component = shallow(<RestaurantReviews {...componentProps}/>);
+    return component;
 };
 
-export default RestaurantReviews;
+
+describe('RestaurantReviews component', () => {
+    describe('Checking propTypes', () => {
+        it('Should not throw error', () => {
+            const restaurantReviewsError = checkProps(RestaurantReviews, expectedProps);
+            expect(restaurantReviewsError).toBeUndefined();
+        });
+    });
+
+    describe('RestaurantReviews render', () => {
+        let wrapper = setup();
+        
+        it('Should render restaurant reviews without an error', () => {
+            const restaurantReviewsComponent = findByTestAttr(wrapper, 'app-restaurant-reviews');
+            expect(restaurantReviewsComponent.length).toBe(1);
+        });
+
+        it('Should render restaurant reviews user image without an error', () => {
+            const userImg = findByTestAttr(wrapper, 'user-img');
+            expect(userImg.length).toBe(2);
+        });
+
+        it('Should render restaurant reviews user name without an error', () => {
+            const userName = findByTestAttr(wrapper, 'user-name');
+            expect(userName.length).toBe(2);
+        });
+
+        it('Should render restaurant reviews review time without an error', () => {
+            const reviewTime = findByTestAttr(wrapper, 'review-time');
+            expect(reviewTime.length).toBe(2);
+        });
+
+        it('Should render restaurant reviews review text without an error', () => {
+            const reviewText = findByTestAttr(wrapper, 'review-text');
+            expect(reviewText.length).toBe(2);
+        });
+    })
+});
